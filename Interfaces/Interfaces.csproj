@@ -55,12 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IABMArticulos.cs" />
-    <Compile Include="IABMCatagorias.cs" />
-    <Compile Include="IConsulta_Ventas.cs" />
-    <Compile Include="IGestion_Categorias.cs" />
-    <Compile Include="IGestion_Producto.cs" />
-    <Compile Include="IOperacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

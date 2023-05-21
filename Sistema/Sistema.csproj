@@ -108,6 +108,20 @@
     <Compile Include="Formularios\Ventas_Consultas.Designer.cs">
       <DependentUpon>Ventas_Consultas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IABMArticulos.cs" />
+    <Compile Include="Interfaces\IABMCatagorias.cs" />
+    <Compile Include="Interfaces\IConsulta_Ventas.cs" />
+    <Compile Include="Interfaces\IGestion_Categorias.cs" />
+    <Compile Include="Interfaces\IGestion_Producto.cs" />
+    <Compile Include="Interfaces\IOperacion.cs" />
+    <Compile Include="Presentadores\PresentadorABMArticulos.cs" />
+    <Compile Include="Presentadores\PresentadorABM_Categoria.cs" />
+    <Compile Include="Presentadores\PresentadorBuscardor_Articulos.cs" />
+    <Compile Include="Presentadores\PresentadorGestion_Articulos.cs" />
+    <Compile Include="Presentadores\PresentadorGestion_Categorias.cs" />
+    <Compile Include="Presentadores\PresentadorVentas.cs" />
+    <Compile Include="Presentadores\Presentador_Inicio.cs" />
+    <Compile Include="Presentadores\Presentador_Ventas_Consultas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -165,14 +179,6 @@
     <ProjectReference Include="..\Dominio\Dominio.csproj">
       <Project>{305EAFB3-46D0-4A4B-919D-18130B4548CC}</Project>
       <Name>Dominio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
-      <Project>{396df10b-76f2-4d90-8fa3-d4215ac8a9a0}</Project>
-      <Name>Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Presentadores\Presentadores.csproj">
-      <Project>{91c3ad61-e650-43cd-b3b4-137efea8a5b2}</Project>
-      <Name>Presentadores</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
