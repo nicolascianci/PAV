@@ -45,6 +45,6 @@ namespace Dominio
 
         //[ForeignKey ("categoria")]
         public int? CategoriaId { get; set; }
-        //public virtual categoria categoria { get; set; }
+        public virtual categoria categoria { get; set; }
     }
 }

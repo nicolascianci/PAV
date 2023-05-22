@@ -20,10 +20,10 @@ namespace Datos
 
         public void Abrir_Caja()
         {
-            if(!_repositorio.Cajas.Any(x => x.fecha_cierre == null))
+            if(!_repositorio.Cajas.Any(x => x.FechaCierre == null))
             {
                 _caja = new Caja();
-                _caja.fecha_inicio = DateTime.Now;
+                _caja.FechaInicio = DateTime.Now;
                 _repositorio.Cajas.Add(_caja);
                 _repositorio.SaveChanges();
 
@@ -35,14 +35,14 @@ namespace Datos
 
                 if(_resultado == DialogResult.Yes)
                 {
-                    _caja = _repositorio.Cajas.Where(x => x.fecha_cierre == null).FirstOrDefault();
-                    _caja.fecha_cierre = DateTime.Now;
+                    _caja = _repositorio.Cajas.Where(x => x.FechaCierre == null).FirstOrDefault();
+                    _caja.FechaCierre = DateTime.Now;
                     _repositorio.SaveChanges();
 
                     MessageBox.Show("Se cerro la caja correctamente");
 
                     _caja = new Caja();
-                    _caja.fecha_inicio = DateTime.Now;
+                    _caja.FechaInicio = DateTime.Now;
                     _repositorio.Cajas.Add(_caja);
                     _repositorio.SaveChanges();
 

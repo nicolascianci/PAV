@@ -10,17 +10,17 @@ namespace Dominio
     public class Operacion
     {
         public int ID_Operacion { get; set; }
-        public Tipo_Operacion Tipo_operacion { get; set; }
-        public int punto_venta { get; set; }
-        public int numero_venta { get; set; }
-        public double totas_sin_descuento { get; set; }
+        public Tipo_Operacion TipoOperacion { get; set; }
+        public int puntoVenta { get; set; }
+        public int numeroVenta { get; set; }
+        public double totalSinDescuento { get; set; }
         public double descuento { get; set; }
         public double total { get; set; }
         
         public DateTime fecha { get; set; }
 
         //public List<Detalle> operacion_detalle { get; set; }
-        public virtual ICollection<Detalle> Operacion_Detalle { get; set; }
+        public virtual ICollection<Detalle> OperacionDetalle { get; set; }
 
 
     }

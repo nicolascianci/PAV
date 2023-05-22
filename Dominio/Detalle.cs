@@ -14,17 +14,17 @@ namespace Dominio
 
 
         [ForeignKey("Operacion")]
-        public int? ID_Operacion { get; set; }
+        public int? IDOperacion { get; set; }
 
         public int articuloID { get; set; }
-        public double precio_unitario { get; set; }
+        public double precioUnitario { get; set; }
         public decimal cantidad { get; set; }
 
         public double Preciofinal
         {
             get
             {
-                return Math.Round((double)cantidad * (double)precio_unitario, 2);
+                return Math.Round((double)cantidad * (double)precioUnitario, 2);
 
             }
         }

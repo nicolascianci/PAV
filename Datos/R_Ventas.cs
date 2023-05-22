@@ -19,10 +19,10 @@ namespace Datos
 
         public int Obtener_Numero()
         {
-            var query = repositorio.operaciones.Where(x => x.Tipo_operacion == Dominio.Tipo_Operacion.Venta).OrderByDescending(x => x.fecha).FirstOrDefault();
+            var query = repositorio.operaciones.Where(x => x.TipoOperacion == Dominio.Tipo_Operacion.Venta).OrderByDescending(x => x.fecha).FirstOrDefault();
 
             if (query != null)
-                return query.numero_venta + 1;
+                return query.numeroVenta + 1;
             else
                 return 1;                
         }
@@ -39,7 +39,7 @@ namespace Datos
             List<Datos_Grilla> lista_tmp = new List<Datos_Grilla>();
 
             var query = (from v in repositorio.operaciones
-                         where v.Tipo_operacion == Tipo_Operacion.Venta
+                         where v.TipoOperacion == Tipo_Operacion.Venta
                          && v.fecha >= desde_par
                          && v.fecha <= hasta_par
                          select v).ToList();
@@ -48,7 +48,7 @@ namespace Datos
             {
                 Datos_Grilla venta = new Datos_Grilla();
                 venta.codigo = item.ID_Operacion;
-                venta.columna1 = item.punto_venta.ToString().PadLeft(4, '0') + "-" + item.numero_venta.ToString().PadLeft(8, '0');
+                venta.columna1 = item.puntoVenta.ToString().PadLeft(4, '0') + "-" + item.numeroVenta.ToString().PadLeft(8, '0');
                 venta.columna2 = item.total;
                 venta.columna3 = item.fecha;
 
@@ -62,7 +62,7 @@ namespace Datos
         public Operacion Buscar_Venta(int idventa_par)
         {
             Operacion item = (from a in repositorio.operaciones
-                              where a.Tipo_operacion == Tipo_Operacion.Venta
+                              where a.TipoOperacion == Tipo_Operacion.Venta
                               && a.ID_Operacion == idventa_par
                               select a).FirstOrDefault();
 
