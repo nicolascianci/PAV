@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.ViewModels;
 using Interfaces;
 using Presentadores;
 using System;
@@ -18,7 +19,7 @@ namespace Sistema.Formularios
 
         private PresentadorGestion_Articulos _presentador;
         //private List<VistaProducto> _productos = new List<VistaProducto>();
-        private articulo _articulo;
+        private GestionArticulosViewModel _articulo;
 
 
         public Gestion_Articulos()
@@ -37,26 +38,19 @@ namespace Sistema.Formularios
 
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
-            ABM_Articulos _formulario = new ABM_Articulos();
-            _formulario._nuevo = true;
-            _formulario.ShowDialog();
+            _presentador.AgregarArticulo();
             this.ActualizarLista();
         }
 
         private void btn_Modificar_Click(object sender, EventArgs e)
         {
-            ABM_Articulos _formulario = new ABM_Articulos();
-            _formulario._nuevo = false;
-            _formulario.ActualizarProducto(_articulo);
-            _formulario.ShowDialog();
+            _presentador.EditarArticulo(_articulo.IdArticulo);
             this.ActualizarLista();
         }
 
         private void btn_Eliminar_Click(object sender, EventArgs e)
         {
-            ABM_Articulos _formulario = new ABM_Articulos();
-            _formulario.ActualizarProducto(_articulo);
-            _formulario.EliminarProducto();
+            _presentador.EliminarArticulo(_articulo.IdArticulo);
             this.ActualizarLista();
         }
 
@@ -73,7 +67,7 @@ namespace Sistema.Formularios
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             if(dataGridView1.CurrentRow != null)
-                _articulo = dataGridView1.CurrentRow.DataBoundItem as articulo;
+                _articulo = dataGridView1.CurrentRow.DataBoundItem as GestionArticulosViewModel;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,26 +26,7 @@ namespace Datos
 
             return _lista;
         }
-
-        public List<Datos_Grilla> Todos_Item()
-        {
-            List<Datos_Grilla> _lista = new List<Datos_Grilla>();
-
-            var query = (from a in repositorio.categorias
-                         where a.febaj == null
-                         select a).ToList();
-
-            foreach(var item in query)
-            {
-                Datos_Grilla _categoria = new Datos_Grilla();
-                _categoria.codigo = item.id;
-                _categoria.columna1 = item.Nombre;
-
-                _lista.Add(_categoria);
-            }
-
-            return _lista;
-        }
+        
 
         public void Agregar_Categoria(categoria categoria_par)
         {

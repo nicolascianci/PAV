@@ -138,3 +138,17 @@ C:\Users\PC\Desktop\PAV\Sistema\Sistema\obj\Debug\Sistema.csproj.CoreCompileInpu
 C:\Users\PC\Desktop\PAV\Sistema\Sistema\obj\Debug\Sistema.csproj.CopyComplete
 C:\Users\PC\Desktop\PAV\Sistema\Sistema\obj\Debug\Sistema.exe
 C:\Users\PC\Desktop\PAV\Sistema\Sistema\obj\Debug\Sistema.pdb
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.csprojAssemblyReference.cache
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.Form1.resources
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.Formularios.ABM_Articulos.resources
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.Formularios.ABM_Categoria.resources
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.Formularios.Buscador_Articulos.resources
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.Formularios.Gestion_Articulos.resources
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.Gestion_Categorias.resources
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.Formularios.Ventas.resources
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.Formularios.Ventas_Consultas.resources
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.Properties.Resources.resources
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.csproj.GenerateResource.cache
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.exe
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Sistema\obj\Debug\Sistema.pdb

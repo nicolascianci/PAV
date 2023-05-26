@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.ViewModels;
 using Interfaces;
 using Presentadores;
 using System;
@@ -16,7 +17,7 @@ namespace Sistema.Formularios
     public partial class ABM_Articulos : Form, IABMArticulos
     {
         articulo articulos_tmp = new articulo();
-        Datos_Grilla _categoria = new Datos_Grilla();
+        CategoriaViewModel _categoria = new CategoriaViewModel();
         private PresentadorABMArticulos _presentador;
         public bool _nuevo;
 
@@ -87,18 +88,18 @@ namespace Sistema.Formularios
                 var resultado = MessageBox.Show("¿Deseas crear el Crear Producto?", "Producto", MessageBoxButtons.OKCancel);
                 if (resultado == DialogResult.OK)
                 {
-                    _categoria = (Datos_Grilla)datosGrillaBindingSource.Current;
-                    articulos_tmp.CategoriaId = Convert.ToInt32(_categoria.codigo);
-                    //articulos_tmp.categoria = _categoria;
+                    _categoria = (CategoriaViewModel)datosGrillaBindingSource.Current;
+                    articulos_tmp.CategoriaId = Convert.ToInt32(_categoria.idCategoria);
+                    articulos_tmp.categoria = _presentador.Devolver_Categoria(_categoria.idCategoria);
                     OnAgregarProductoAceptar(articulos_tmp);
 
                 }
             }
             else
             {
-                _categoria = (Datos_Grilla)datosGrillaBindingSource.Current;
-                articulos_tmp.CategoriaId = Convert.ToInt32(_categoria.codigo);
-                //articulos_tmp.categoria = _categoria;
+                _categoria = (CategoriaViewModel)datosGrillaBindingSource.Current;
+                articulos_tmp.CategoriaId = Convert.ToInt32(_categoria.idCategoria);
+                articulos_tmp.categoria = _presentador.Devolver_Categoria(_categoria.idCategoria);
                 OnEditarProductoAceptar(articulos_tmp);
 
             }

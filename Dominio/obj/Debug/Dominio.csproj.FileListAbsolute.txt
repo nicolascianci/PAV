@@ -68,3 +68,17 @@ C:\Users\PC\Desktop\PAV\Sistema\Dominio\obj\Debug\Dominio.csproj.CoreCompileInpu
 C:\Users\PC\Desktop\PAV\Sistema\Dominio\obj\Debug\Dominio.csproj.CopyComplete
 C:\Users\PC\Desktop\PAV\Sistema\Dominio\obj\Debug\Dominio.dll
 C:\Users\PC\Desktop\PAV\Sistema\Dominio\obj\Debug\Dominio.pdb
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\bin\Debug\Dominio.dll.config
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\bin\Debug\Dominio.dll
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\bin\Debug\Dominio.pdb
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\bin\Debug\EntityFramework.dll
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\bin\Debug\System.Data.SqlClient.dll
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\bin\Debug\EntityFramework.xml
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\bin\Debug\System.Data.SqlClient.xml
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\obj\Debug\Dominio.csprojAssemblyReference.cache
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\obj\Debug\Dominio.csproj.CopyComplete
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\obj\Debug\Dominio.dll
+C:\Users\PC\Desktop\PAV-Proyecto\PAV\Dominio\obj\Debug\Dominio.pdb

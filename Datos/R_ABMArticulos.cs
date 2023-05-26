@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,18 @@ namespace Datos
             repositorio = new Modelo();
         }
 
-        public List<articulo> Actualizar()
+        public List<GestionArticulosViewModel> Actualizar()
         {
-            return repositorio.articulos.Where(x => x.febaj == null).ToList();
+            return repositorio.articulos.Where(x => x.febaj == null).Select(p => new GestionArticulosViewModel
+            {
+                IdArticulo = p.id,
+                descripcionArticulo = p.Descripcion,
+                costoSinIva = p.CostoSinIva,
+                costoConIva = p.CostoConIva,
+                precioFinal = p.Preciofinal,
+                estadoProducto = p.Estado,
+                nombreCategoria = p.categoria.Nombre
+            }).ToList();
         }
 
         public void AgregarProducto(articulo p)
@@ -47,7 +57,7 @@ namespace Datos
             _articulo.femod = DateTime.Now;
             _articulo.stock = p.stock;
             _articulo.CategoriaId = p.CategoriaId;
-            // _articulo.categoria = p.categoria;            
+            _articulo.categoria = p.categoria;            
             
             
             repositorio.SaveChanges();
@@ -61,9 +71,18 @@ namespace Datos
             repositorio.SaveChanges();
         }
 
-        public List<articulo> BuscarProductos(string nombre)
+        public List<GestionArticulosViewModel> BuscarProductos(string nombre)
         {
-            return repositorio.articulos.Where(x => x.Descripcion.Contains(nombre)).ToList();
+            return repositorio.articulos.Where(x => x.Descripcion.Contains(nombre)).Select(p => new GestionArticulosViewModel
+            {
+                IdArticulo = p.id,
+                descripcionArticulo = p.Descripcion,
+                costoConIva = p.CostoConIva,
+                costoSinIva = p.CostoSinIva,
+                precioFinal = p.Preciofinal,
+                estadoProducto = p.Estado,
+                nombreCategoria = p.categoria.Nombre
+            }).ToList();
         }
 
         public List<categoria> Buscar_Todas_Categorias()
@@ -71,22 +90,27 @@ namespace Datos
             return repositorio.categorias.Where(x => x.febaj == null).ToList();
         }
 
-        public List<Datos_Grilla> Buscar_Todas_Categorias_Item()
+        public List<CategoriaViewModel> Buscar_Todas_Categorias_Item()
         {
-            List<Datos_Grilla> lista_tmp = new List<Datos_Grilla>();
+            List<CategoriaViewModel> lista_tmp = new List<CategoriaViewModel>();
 
-            var query = repositorio.categorias.Where(x => x.febaj == null).ToList();
-
-            foreach(var _categoria in query)
+            lista_tmp = repositorio.categorias.Where(x => x.febaj == null).Select(p => new CategoriaViewModel
             {
-                Datos_Grilla item = new Datos_Grilla();
-                item.codigo = _categoria.id;
-                item.columna1 = _categoria.Nombre;
-
-                lista_tmp.Add(item);
-            }
+                idCategoria = p.id,
+                nombreCategoria = p.Nombre
+            }).ToList();
 
             return lista_tmp;
+        }
+
+        public categoria GetCategoria(int idcategoria)
+        {
+            return repositorio.categorias.Where(p => p.febaj == null && p.id == idcategoria).FirstOrDefault();
+        }
+
+        public articulo BuscarArticuloId(int idarticulo)
+        {
+            return repositorio.articulos.Where(p => p.febaj == null && p.id == idarticulo).FirstOrDefault();
         }
     }
 }

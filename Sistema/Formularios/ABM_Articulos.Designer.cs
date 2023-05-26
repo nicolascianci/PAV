@@ -263,7 +263,7 @@ namespace Sistema.Formularios
             // 
             // datosGrillaBindingSource
             // 
-            this.datosGrillaBindingSource.DataSource = typeof(Dominio.Datos_Grilla);
+            //this.datosGrillaBindingSource.DataSource = typeof(Dominio.Datos_Grilla);
             // 
             // ABM_Articulos
             // 

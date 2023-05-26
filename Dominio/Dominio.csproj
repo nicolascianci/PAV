@@ -59,11 +59,12 @@
     <Compile Include="Caja.cs" />
     <Compile Include="categoria.cs" />
     <Compile Include="Estado_Producto.cs" />
-    <Compile Include="Datos_Grilla.cs" />
     <Compile Include="Operacion.cs" />
     <Compile Include="Detalle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tipo_Operacion.cs" />
+    <Compile Include="ViewModels\CategoriaViewModel.cs" />
+    <Compile Include="ViewModels\GestionArticulosViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

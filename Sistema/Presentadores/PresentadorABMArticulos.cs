@@ -1,6 +1,8 @@
 ﻿using Datos;
 using Dominio;
+using Dominio.ViewModels;
 using Interfaces;
+using Sistema.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace Presentadores
     {
         IABMArticulos vista_tmp;
         private R_ABMArticulos _repositorio;
-        private List<Datos_Grilla> _lista_categorias = new List<Datos_Grilla>();
+        private List<CategoriaViewModel> _lista_categorias = new List<CategoriaViewModel>();
        
 
         public PresentadorABMArticulos(IABMArticulos vista_par)
@@ -41,10 +43,20 @@ namespace Presentadores
             _repositorio.EliminarProducto(p);
         }
 
-        public List<Datos_Grilla> Buscar_Categorias()
+        public List<CategoriaViewModel> Buscar_Categorias()
         {
-            _lista_categorias = _repositorio.Buscar_Todas_Categorias_Item();
+            _lista_categorias = _repositorio.Buscar_Todas_Categorias().Select(x => new CategoriaViewModel
+            {
+                idCategoria = x.id,
+                nombreCategoria = x.Nombre
+            }).ToList();
+
             return _lista_categorias;
+        }
+
+        public categoria Devolver_Categoria(int idcategoria)
+        {
+            return _repositorio.GetCategoria(idcategoria);
         }
     }
 }
