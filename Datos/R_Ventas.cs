@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,26 +35,23 @@ namespace Datos
             repositorio.SaveChanges();
         }
 
-        public List<Datos_Grilla> Buscar_Ventas(DateTime desde_par, DateTime hasta_par)
+        public List<ConsultaVentasViewModel> Buscar_Ventas(DateTime desde_par, DateTime hasta_par)
         {
-            List<Datos_Grilla> lista_tmp = new List<Datos_Grilla>();
+            List<ConsultaVentasViewModel> lista_tmp = new List<ConsultaVentasViewModel>();
 
-            var query = (from v in repositorio.operaciones
+            lista_tmp = (from v in repositorio.operaciones
                          where v.TipoOperacion == Tipo_Operacion.Venta
                          && v.fecha >= desde_par
                          && v.fecha <= hasta_par
-                         select v).ToList();
+                         select v).Select(p => new ConsultaVentasViewModel
+                         {
+                             numeroVenta = p.ID_Operacion,
+                             numeroFactura = p.puntoVenta.ToString().PadLeft(4,'0') + '-' + p.numeroVenta.ToString().PadLeft(8,'0'),
+                             fechaVenta = p.fecha,
+                             totalVenta = p.total
+                         }).ToList();
 
-            foreach (var item in query)
-            {
-                Datos_Grilla venta = new Datos_Grilla();
-                venta.codigo = item.ID_Operacion;
-                venta.columna1 = item.puntoVenta.ToString().PadLeft(4, '0') + "-" + item.numeroVenta.ToString().PadLeft(8, '0');
-                venta.columna2 = item.total;
-                venta.columna3 = item.fecha;
-
-                lista_tmp.Add(venta);
-            }
+            
 
             return lista_tmp;
         }

@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.ViewModels;
 using Interfaces;
 using Presentadores;
 using System;
@@ -40,11 +41,11 @@ namespace Sistema.Formularios
             this.articulos_txt.Enabled = false;
         }
 
-        public List<Datos_Grilla> lista_articulos
+        public List<OperacionViewModel> lista_articulos
         {
             get
             {
-                return (List<Datos_Grilla>)this.articulos_bs.DataSource;
+                return (List<OperacionViewModel>)this.articulos_bs.DataSource;
             }
             set
             {
@@ -59,7 +60,7 @@ namespace Sistema.Formularios
         public double total_con_descuento { get => Convert.ToDouble(total_descuento_txb.Text); set => this.total_descuento_txb.Text = value.ToString("N2"); }
         double IOperacion.descuento { get => Convert.ToDouble(this.descuento_txb.Text); set => this.descuento_txb.Text = value.ToString(); }
 
-        public event EventHandler<List<Datos_Grilla>> Realizar_Operacion;
+        public event EventHandler<List<OperacionViewModel>> Realizar_Operacion;
 
         private void articulos_txt_KeyDown(object sender, KeyEventArgs e)
         {
@@ -107,9 +108,9 @@ namespace Sistema.Formularios
 
                     if (this.articulos_ctrl.CurrentRow != null)
                     {
-                        var _articulo = (Datos_Grilla)this.articulos_ctrl.CurrentRow.DataBoundItem;
+                        var _articulo = (OperacionViewModel)this.articulos_ctrl.CurrentRow.DataBoundItem;
 
-                        presentador_tmp.Eliminar_Articulo(Convert.ToInt32(_articulo.codigo));
+                        presentador_tmp.Eliminar_Articulo(Convert.ToInt32(_articulo.idArticulo));
                     }
 
                     break;                
@@ -151,7 +152,7 @@ namespace Sistema.Formularios
             }
         }
 
-        protected virtual void OnRealizarOperacion(List<Datos_Grilla> lista_par)
+        protected virtual void OnRealizarOperacion(List<OperacionViewModel> lista_par)
         {
             Realizar_Operacion?.Invoke(this, lista_par);
         }

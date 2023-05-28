@@ -1,5 +1,6 @@
 ﻿using Datos;
 using Dominio;
+using Dominio.ViewModels;
 using Interfaces;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Presentadores
         IConsulta_Ventas vista_tmp;
         R_Ventas repositorio_ventas;
 
-        List<Datos_Grilla> lista_ventas = new List<Datos_Grilla>();
+        List<ConsultaVentasViewModel> lista_ventas = new List<ConsultaVentasViewModel>();
 
         public Presentador_Ventas_Consultas(IConsulta_Ventas vista_par)
         {
@@ -27,14 +28,14 @@ namespace Presentadores
         {
             lista_ventas = repositorio_ventas.Buscar_Ventas(this.vista_tmp.Desde, this.vista_tmp.Hasta);
             this.vista_tmp.lista_ventas = lista_ventas;
-            this.vista_tmp.total = lista_ventas.Sum(x => Convert.ToDecimal(x.columna2));
+            this.vista_tmp.total = lista_ventas.Sum(x => Convert.ToDecimal(x.totalVenta));
 
         }
         
 
         public void limpiar()
         {
-            lista_ventas = new List<Datos_Grilla>();
+            lista_ventas = new List<ConsultaVentasViewModel>();
             this.vista_tmp.lista_ventas = lista_ventas;
             this.vista_tmp.total = 0;
         }
