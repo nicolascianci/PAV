@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Interfaces
     {
         DateTime Desde { get; }
         DateTime Hasta { get; }
-        List<Datos_Grilla> lista_ventas { get; set; }
+        List<ConsultaVentasViewModel> lista_ventas { get; set; }
         int idventa { get; }
         decimal total { set; }
     }

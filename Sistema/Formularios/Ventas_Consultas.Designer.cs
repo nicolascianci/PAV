@@ -130,6 +130,7 @@
             this.ventas_grilla.Location = new System.Drawing.Point(0, 89);
             this.ventas_grilla.Name = "ventas_grilla";
             this.ventas_grilla.ReadOnly = true;
+            this.ventas_grilla.RowHeadersWidth = 4;
             this.ventas_grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ventas_grilla.Size = new System.Drawing.Size(874, 295);
             this.ventas_grilla.TabIndex = 1;

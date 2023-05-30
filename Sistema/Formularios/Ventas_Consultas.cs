@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.ViewModels;
 using Interfaces;
 using Presentadores;
 using System;
@@ -47,9 +48,9 @@ namespace Sistema.Formularios
                     return Convert.ToDateTime(this.Hasta_ctrl.Text + " 23:59:59");
             }
         }
-        public List<Datos_Grilla> lista_ventas
+        public List<ConsultaVentasViewModel> lista_ventas
         {
-            get => (List<Datos_Grilla>)bds_ventas.DataSource;
+            get => (List<ConsultaVentasViewModel>)bds_ventas.DataSource;
             set => bds_ventas.DataSource = value;
         }
 
@@ -59,8 +60,8 @@ namespace Sistema.Formularios
             {
                 if (this.ventas_grilla.CurrentRow != null)
                 {
-                    var datos = (Datos_Grilla)this.ventas_grilla.CurrentRow.DataBoundItem;
-                    return Convert.ToInt32(datos.codigo);
+                    var datos = (ConsultaVentasViewModel)this.ventas_grilla.CurrentRow.DataBoundItem;
+                    return Convert.ToInt32(datos.numeroVenta);
                 }
                 return 0;
             }

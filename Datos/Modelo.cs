@@ -17,6 +17,7 @@ namespace Datos
         public Modelo()
             : base("Sistema")
         {
+            
         }
 
 
@@ -25,6 +26,7 @@ namespace Datos
             modelBuilder
                 .Conventions
                 .Remove<PluralizingTableNameConvention>();
+            
 
             //modelBuilder.Entity<Operacion_Detalle>()
             //    .HasKey(x => x.ID);                
