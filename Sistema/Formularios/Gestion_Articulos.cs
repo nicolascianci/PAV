@@ -33,7 +33,7 @@ namespace Sistema.Formularios
 
         public void ActualizarLista()
         {
-            Articulos_BS.DataSource = _presentador.ActualizarListado();
+            gestionArticulosViewModelBindingSource.DataSource = _presentador.ActualizarListado();
         }
 
         private void btn_Agregar_Click(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace Sistema.Formularios
 
         private void nombre_articulo_ctrl_TextChanged(object sender, EventArgs e)
         {
-            Articulos_BS.DataSource = _presentador.BuscarProductos(this.nombre_articulo_ctrl.Text);
+            gestionArticulosViewModelBindingSource.DataSource = _presentador.BuscarProductos(this.nombre_articulo_ctrl.Text);
         }
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)

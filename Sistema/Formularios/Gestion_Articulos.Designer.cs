@@ -32,7 +32,6 @@ namespace Sistema.Formularios
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion_Articulos));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Articulos_BS = new System.Windows.Forms.BindingSource(this.components);
             this.nombre_articulo_ctrl = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_Agregar = new System.Windows.Forms.ToolStripButton();
@@ -40,32 +39,35 @@ namespace Sistema.Formularios
             this.btn_Modificar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_Eliminar = new System.Windows.Forms.ToolStripButton();
-            this.idart = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csiva = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cciva = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prefin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.est = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gestionArticulosViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.idArticuloDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionArticuloDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costoSinIvaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costoConIvaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioFinalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoProductoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreCategoriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Articulos_BS)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gestionArticulosViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idart,
-            this.desc,
-            this.csiva,
-            this.cciva,
-            this.prefin,
-            this.est,
-            this.cate});
+            this.idArticuloDataGridViewTextBoxColumn,
+            this.descripcionArticuloDataGridViewTextBoxColumn,
+            this.costoSinIvaDataGridViewTextBoxColumn,
+            this.costoConIvaDataGridViewTextBoxColumn,
+            this.precioFinalDataGridViewTextBoxColumn,
+            this.estadoProductoDataGridViewTextBoxColumn,
+            this.nombreCategoriaDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.gestionArticulosViewModelBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 45);
             this.dataGridView1.Name = "dataGridView1";
@@ -76,10 +78,6 @@ namespace Sistema.Formularios
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
-            // 
-            // Articulos_BS
-            // 
-            this.Articulos_BS.DataSource = typeof(Dominio.articulo);
             // 
             // nombre_articulo_ctrl
             // 
@@ -143,47 +141,58 @@ namespace Sistema.Formularios
             this.btn_Eliminar.Text = "Eliminar";
             this.btn_Eliminar.Click += new System.EventHandler(this.btn_Eliminar_Click);
             // 
-            // idart
+            // gestionArticulosViewModelBindingSource
             // 
-            this.idart.HeaderText = "Codigo";
-            this.idart.Name = "idart";
-            this.idart.ReadOnly = true;
+            this.gestionArticulosViewModelBindingSource.DataSource = typeof(Dominio.ViewModels.GestionArticulosViewModel);
             // 
-            // desc
+            // idArticuloDataGridViewTextBoxColumn
             // 
-            this.desc.HeaderText = "Descripcion";
-            this.desc.Name = "desc";
-            this.desc.ReadOnly = true;
+            this.idArticuloDataGridViewTextBoxColumn.DataPropertyName = "IdArticulo";
+            this.idArticuloDataGridViewTextBoxColumn.HeaderText = "IdArticulo";
+            this.idArticuloDataGridViewTextBoxColumn.Name = "idArticuloDataGridViewTextBoxColumn";
+            this.idArticuloDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // csiva
+            // descripcionArticuloDataGridViewTextBoxColumn
             // 
-            this.csiva.HeaderText = "Costo S/IVA";
-            this.csiva.Name = "csiva";
-            this.csiva.ReadOnly = true;
+            this.descripcionArticuloDataGridViewTextBoxColumn.DataPropertyName = "descripcionArticulo";
+            this.descripcionArticuloDataGridViewTextBoxColumn.HeaderText = "descripcionArticulo";
+            this.descripcionArticuloDataGridViewTextBoxColumn.Name = "descripcionArticuloDataGridViewTextBoxColumn";
+            this.descripcionArticuloDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // cciva
+            // costoSinIvaDataGridViewTextBoxColumn
             // 
-            this.cciva.HeaderText = "Costo C/IVA";
-            this.cciva.Name = "cciva";
-            this.cciva.ReadOnly = true;
+            this.costoSinIvaDataGridViewTextBoxColumn.DataPropertyName = "costoSinIva";
+            this.costoSinIvaDataGridViewTextBoxColumn.HeaderText = "costoSinIva";
+            this.costoSinIvaDataGridViewTextBoxColumn.Name = "costoSinIvaDataGridViewTextBoxColumn";
+            this.costoSinIvaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // prefin
+            // costoConIvaDataGridViewTextBoxColumn
             // 
-            this.prefin.HeaderText = "Precio";
-            this.prefin.Name = "prefin";
-            this.prefin.ReadOnly = true;
+            this.costoConIvaDataGridViewTextBoxColumn.DataPropertyName = "costoConIva";
+            this.costoConIvaDataGridViewTextBoxColumn.HeaderText = "costoConIva";
+            this.costoConIvaDataGridViewTextBoxColumn.Name = "costoConIvaDataGridViewTextBoxColumn";
+            this.costoConIvaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // est
+            // precioFinalDataGridViewTextBoxColumn
             // 
-            this.est.HeaderText = "Estado";
-            this.est.Name = "est";
-            this.est.ReadOnly = true;
+            this.precioFinalDataGridViewTextBoxColumn.DataPropertyName = "precioFinal";
+            this.precioFinalDataGridViewTextBoxColumn.HeaderText = "precioFinal";
+            this.precioFinalDataGridViewTextBoxColumn.Name = "precioFinalDataGridViewTextBoxColumn";
+            this.precioFinalDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // cate
+            // estadoProductoDataGridViewTextBoxColumn
             // 
-            this.cate.HeaderText = "Categoria";
-            this.cate.Name = "cate";
-            this.cate.ReadOnly = true;
+            this.estadoProductoDataGridViewTextBoxColumn.DataPropertyName = "estadoProducto";
+            this.estadoProductoDataGridViewTextBoxColumn.HeaderText = "estadoProducto";
+            this.estadoProductoDataGridViewTextBoxColumn.Name = "estadoProductoDataGridViewTextBoxColumn";
+            this.estadoProductoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nombreCategoriaDataGridViewTextBoxColumn
+            // 
+            this.nombreCategoriaDataGridViewTextBoxColumn.DataPropertyName = "nombreCategoria";
+            this.nombreCategoriaDataGridViewTextBoxColumn.HeaderText = "nombreCategoria";
+            this.nombreCategoriaDataGridViewTextBoxColumn.Name = "nombreCategoriaDataGridViewTextBoxColumn";
+            this.nombreCategoriaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Gestion_Articulos
             // 
@@ -196,9 +205,9 @@ namespace Sistema.Formularios
             this.Name = "Gestion_Articulos";
             this.Text = "Gestion_Articulos";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Articulos_BS)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gestionArticulosViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,13 +223,13 @@ namespace Sistema.Formularios
         private System.Windows.Forms.ToolStripButton btn_Modificar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btn_Eliminar;
-        private System.Windows.Forms.BindingSource Articulos_BS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idart;
-        private System.Windows.Forms.DataGridViewTextBoxColumn desc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn csiva;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cciva;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prefin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn est;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idArticuloDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionArticuloDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costoSinIvaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costoConIvaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precioFinalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estadoProductoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreCategoriaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource gestionArticulosViewModelBindingSource;
     }
 }

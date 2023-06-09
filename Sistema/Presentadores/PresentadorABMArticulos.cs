@@ -48,7 +48,7 @@ namespace Presentadores
             {
                 idCategoria = x.id,
                 nombreCategoria = x.Nombre
-            }).ToList();
+            }).OrderBy(x => x.idCategoria).ToList();
 
             return _lista_categorias;
         }

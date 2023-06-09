@@ -50,8 +50,8 @@ namespace Sistema.Formularios
         }
         public List<ConsultaVentasViewModel> lista_ventas
         {
-            get => (List<ConsultaVentasViewModel>)bds_ventas.DataSource;
-            set => bds_ventas.DataSource = value;
+            get => (List<ConsultaVentasViewModel>)consultaVentasViewModelBindingSource.DataSource;
+            set => consultaVentasViewModelBindingSource.DataSource = value;
         }
 
         public int idventa

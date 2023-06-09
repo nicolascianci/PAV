@@ -195,6 +195,10 @@
     <Compile Include="Migrations\202110220031457_caja.designer.cs">
       <DependentUpon>202110220031457_caja.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306052236303_nuevos_cambios.cs" />
+    <Compile Include="Migrations\202306052236303_nuevos_cambios.designer.cs">
+      <DependentUpon>202306052236303_nuevos_cambios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110220031457_caja.resx">
       <DependentUpon>202110220031457_caja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306052236303_nuevos_cambios.resx">
+      <DependentUpon>202306052236303_nuevos_cambios.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

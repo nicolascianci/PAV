@@ -26,8 +26,8 @@ namespace Datos
                 IdArticulo = p.id,
                 descripcionArticulo = p.Descripcion,
                 costoSinIva = p.CostoSinIva,
-                costoConIva = p.CostoConIva,
-                precioFinal = p.Preciofinal,
+                //costoConIva = p.CostoConIva,
+                //precioFinal = p.Preciofinal,
                 estadoProducto = p.Estado,
                 nombreCategoria = p.categoria.Nombre
             }).ToList();

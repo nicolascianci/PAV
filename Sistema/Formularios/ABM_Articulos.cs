@@ -27,9 +27,9 @@ namespace Sistema.Formularios
             _presentador = new PresentadorABMArticulos(this);
             articulosbd.DataSource = articulos_tmp;
             comboBox1.DataSource = Enum.GetValues(typeof(EstadoProducto));
-            datosGrillaBindingSource.DataSource = _presentador.Buscar_Categorias();
-            comboBox2.DataSource = datosGrillaBindingSource.DataSource;
-            datosGrillaBindingSource.Position = 0;
+            categoriaViewModelBindingSource.DataSource = _presentador.Buscar_Categorias();
+            comboBox2.DataSource = categoriaViewModelBindingSource.DataSource;
+            categoriaViewModelBindingSource.Position = 0;
             
            
         }
@@ -43,7 +43,7 @@ namespace Sistema.Formularios
         {
             articulos_tmp = p;
             articulosbd.DataSource = articulos_tmp;
-            datosGrillaBindingSource.Position = (int)p.CategoriaId - 1;
+            categoriaViewModelBindingSource.Position = (int)p.CategoriaId - 1;
         }
 
 
@@ -77,7 +77,7 @@ namespace Sistema.Formularios
         public void Modificar(articulo articulo_par)
         {
             articulosbd.DataSource = articulo_par;
-            datosGrillaBindingSource.Position = (int)articulo_par.CategoriaId - 1;
+            categoriaViewModelBindingSource.Position = (int)articulo_par.CategoriaId - 1;
         }
 
         private void btn_guardar_Click_1(object sender, EventArgs e)
@@ -88,7 +88,7 @@ namespace Sistema.Formularios
                 var resultado = MessageBox.Show("¿Deseas crear el Crear Producto?", "Producto", MessageBoxButtons.OKCancel);
                 if (resultado == DialogResult.OK)
                 {
-                    _categoria = (CategoriaViewModel)datosGrillaBindingSource.Current;
+                    _categoria = (CategoriaViewModel)categoriaViewModelBindingSource.Current;
                     articulos_tmp.CategoriaId = Convert.ToInt32(_categoria.idCategoria);
                     articulos_tmp.categoria = _presentador.Devolver_Categoria(_categoria.idCategoria);
                     OnAgregarProductoAceptar(articulos_tmp);
@@ -97,7 +97,7 @@ namespace Sistema.Formularios
             }
             else
             {
-                _categoria = (CategoriaViewModel)datosGrillaBindingSource.Current;
+                _categoria = (CategoriaViewModel)categoriaViewModelBindingSource.Current;
                 articulos_tmp.CategoriaId = Convert.ToInt32(_categoria.idCategoria);
                 articulos_tmp.categoria = _presentador.Devolver_Categoria(_categoria.idCategoria);
                 OnEditarProductoAceptar(articulos_tmp);

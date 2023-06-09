@@ -71,6 +71,7 @@ namespace Presentadores
                 operacion_tmp.puntoVenta = 1;
                 operacion_tmp.numeroVenta = negocio_ventas_tmp.Obtener_Numero();
                 operacion_tmp.totalSinDescuento = this.vista_tmp.total_sin_descuento;
+                operacion_tmp.descuento = this.vista_tmp.descuento;
                 operacion_tmp.total = this.vista_tmp.total_con_descuento;
                 operacion_tmp.OperacionDetalle = new List<Detalle>();
 
@@ -107,13 +108,23 @@ namespace Presentadores
         {
             OperacionViewModel _detalle = new OperacionViewModel();
 
+            if(!lista_detalle.Any(x => x.idArticulo == articulo_tmp.id))
+            {
                 _detalle.idArticulo = articulo_tmp.id;
                 _detalle.descripcionArticulo = articulo_tmp.Descripcion;
+                _detalle.precioUnitario = articulo_tmp.Preciofinal;
                 _detalle.cantidad = vista_tmp.cantidad;
                 _detalle.stock = (double)articulo_tmp.stock;
-            
 
-            lista_detalle.Add(_detalle);
+                lista_detalle.Add(_detalle);
+            }else
+            {
+                var _item = lista_detalle.Where(x => x.idArticulo == articulo_tmp.id).FirstOrDefault();
+                int _indice = lista_detalle.IndexOf(_item);
+                lista_detalle.RemoveAt(_indice);
+                _item.cantidad = _item.cantidad + this.vista_tmp.cantidad;
+                lista_detalle.Insert(_indice, _item);
+            }
 
             this.vista_tmp.lista_articulos = lista_detalle;
             this.vista_tmp.nombre_articulo = "";
@@ -144,38 +155,25 @@ namespace Presentadores
             this.vista_tmp.total_sin_descuento = _total;
 
             if (this.vista_tmp.descuento != 0.00)
-                this.vista_tmp.total_con_descuento = _total * (this.vista_tmp.descuento/100);
+                this.vista_tmp.total_con_descuento = _total * (1 - (this.vista_tmp.descuento/100));
             else
                 this.vista_tmp.total_con_descuento = _total;
 
         }
 
-        //public void Realizar_Operacion()
-        //{
-        //    using (TransactionScope scope = new TransactionScope())
-        //    {
-        //        operacion_tmp.punto_venta = 1;
-        //        operacion_tmp.numero_venta = negocio_ventas_tmp.Obtener_Numero();
-        //        operacion_tmp.total = this.vista_tmp.total_con_descuento;
-        //        operacion_tmp.Operacion_Detalle = new List<Detalle>();
+        public void LimpiarFormulario()
+        {
+            this.lista_articulos_tmp = new List<articulo>();
+            this.lista_detalle = new List<OperacionViewModel>();
 
-        //        foreach (var item_tmp in lista_detalle)
-        //        {
-        //            Detalle _detalle = new Detalle();
-        //            _detalle.articuloID = Convert.ToInt32(item_tmp.codigo);
-        //            //_detalle.articulo = negocio_articulo_tmp.Uno(Convert.ToInt32(item_tmp.codigo));
-        //            _detalle.cantidad = Convert.ToDecimal(item_tmp.columna3);
-        //            _detalle.precio_unitario = Convert.ToDouble(item_tmp.columna4);
+            this.vista_tmp.lista_articulos = lista_detalle;
+            this.vista_tmp.cantidad = 0;
+            this.vista_tmp.descuento = 0;
+            this.vista_tmp.nombre_articulo = "";
+            this.vista_tmp.total_con_descuento = 0;
+            this.vista_tmp.total_sin_descuento = 0;
+            
 
-        //            operacion_tmp.Operacion_Detalle.Add(_detalle);
-        //            this.negocio_articulo_tmp.Actualizar_Stock(_detalle.articuloID, _detalle.cantidad);
-        //        }
-
-        //        negocio_ventas_tmp.Guardar_Venta(operacion_tmp);
-
-        //        scope.Complete();
-        //    }
-               
-        //}
+        }
     }
 }

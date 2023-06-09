@@ -45,12 +45,12 @@ namespace Sistema.Formularios
         {
             get
             {
-                return (List<OperacionViewModel>)this.articulos_bs.DataSource;
+                return (List<OperacionViewModel>)this.operacionViewModelBindingSource.DataSource;
             }
             set
             {
-                this.articulos_bs.DataSource = null;
-                this.articulos_bs.DataSource = value;
+                this.operacionViewModelBindingSource.DataSource = null;
+                this.operacionViewModelBindingSource.DataSource = value;
             }
         }
         public string nombre_articulo { get => this.articulos_txt.Text; set => this.articulos_txt.Text = value; }
@@ -66,6 +66,10 @@ namespace Sistema.Formularios
         {
             switch (e.KeyData)
             {
+                case Keys.F2:
+                    this.descuento_txb.ReadOnly = false;
+                    break;
+
                 case Keys.Enter:
                     lista_articulos_tmp = presentador_tmp.Buscar_Articulos();
 
@@ -103,7 +107,8 @@ namespace Sistema.Formularios
         private void articulos_ctrl_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
-            {
+            {               
+
                 case Keys.Delete:
 
                     if (this.articulos_ctrl.CurrentRow != null)
@@ -140,16 +145,7 @@ namespace Sistema.Formularios
         {
             OnRealizarOperacion(this.lista_articulos);
             //this.presentador_tmp.Realizar_Operacion();
-
-            this.Dispose();
-
-            var resultado = MessageBox.Show("¿Deseas Realizar otra venta?", "Producto", MessageBoxButtons.OKCancel);
-            if (resultado == DialogResult.OK)
-            {
-
-                Ventas _from = new Ventas();
-                _from.ShowDialog();
-            }
+            this.presentador_tmp.LimpiarFormulario();
         }
 
         protected virtual void OnRealizarOperacion(List<OperacionViewModel> lista_par)
@@ -162,6 +158,7 @@ namespace Sistema.Formularios
             if (this.cantidad > 0)
             {
                 presentador_tmp.Agregar_Detalle(articulo_tmp);
+                this.cantidad = 0;
                 this.panel2.Visible = false;
             }
             else
@@ -174,6 +171,24 @@ namespace Sistema.Formularios
             this.nombre_articulo = "";
             this.cantidad = 0;
             this.panel2.Visible = false;
+        }
+
+        private void Ventas_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F2:
+                    this.descuento_txb.ReadOnly = false;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void descuento_txb_Leave(object sender, EventArgs e)
+        {
+            presentador_tmp.Totales();
         }
     }
 }

@@ -43,10 +43,10 @@ namespace Datos
                          where v.TipoOperacion == Tipo_Operacion.Venta
                          && v.fecha >= desde_par
                          && v.fecha <= hasta_par
-                         select v).Select(p => new ConsultaVentasViewModel
+                         select v).ToList().Select(p => new ConsultaVentasViewModel
                          {
                              numeroVenta = p.ID_Operacion,
-                             numeroFactura = p.puntoVenta.ToString().PadLeft(4,'0') + '-' + p.numeroVenta.ToString().PadLeft(8,'0'),
+                             numeroFactura = p.puntoVenta.ToString() + '-' + p.numeroVenta.ToString(),
                              fechaVenta = p.fecha,
                              totalVenta = p.total
                          }).ToList();

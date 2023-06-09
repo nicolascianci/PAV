@@ -163,6 +163,10 @@
     <None Include="Properties\DataSources\Dominio.articulo.datasource" />
     <None Include="Properties\DataSources\Dominio.categoria.datasource" />
     <None Include="Properties\DataSources\Dominio.Datos_Grilla.datasource" />
+    <None Include="Properties\DataSources\Dominio.ViewModels.CategoriaViewModel.datasource" />
+    <None Include="Properties\DataSources\Dominio.ViewModels.ConsultaVentasViewModel.datasource" />
+    <None Include="Properties\DataSources\Dominio.ViewModels.GestionArticulosViewModel.datasource" />
+    <None Include="Properties\DataSources\Dominio.ViewModels.OperacionViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

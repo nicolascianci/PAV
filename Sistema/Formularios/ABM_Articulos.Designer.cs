@@ -48,15 +48,13 @@ namespace Sistema.Formularios
             this.txt_codigo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_guardar = new System.Windows.Forms.Button();
-            this.categorias_bs = new System.Windows.Forms.BindingSource(this.components);
             this.label9 = new System.Windows.Forms.Label();
             this.stock_txt = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.datosGrillaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoriaViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.articulosbd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categorias_bs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datosGrillaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriaViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -218,10 +216,6 @@ namespace Sistema.Formularios
             this.btn_guardar.UseVisualStyleBackColor = true;
             this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click_1);
             // 
-            // categorias_bs
-            // 
-            this.categorias_bs.DataSource = typeof(Dominio.categoria);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -250,20 +244,18 @@ namespace Sistema.Formularios
             // 
             // comboBox2
             // 
-            this.comboBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.categorias_bs, "Nombre", true));
-            this.comboBox2.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.datosGrillaBindingSource, "codigo", true));
-            this.comboBox2.DataSource = this.datosGrillaBindingSource;
-            this.comboBox2.DisplayMember = "columna1";
+            this.comboBox2.DataSource = this.categoriaViewModelBindingSource;
+            this.comboBox2.DisplayMember = "nombreCategoria";
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(143, 370);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(202, 21);
             this.comboBox2.TabIndex = 9;
-            this.comboBox2.ValueMember = "codigo";
+            this.comboBox2.ValueMember = "idCategoria";
             // 
-            // datosGrillaBindingSource
+            // categoriaViewModelBindingSource
             // 
-            //this.datosGrillaBindingSource.DataSource = typeof(Dominio.Datos_Grilla);
+            this.categoriaViewModelBindingSource.DataSource = typeof(Dominio.ViewModels.CategoriaViewModel);
             // 
             // ABM_Articulos
             // 
@@ -291,12 +283,10 @@ namespace Sistema.Formularios
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txt_codigo);
             this.Controls.Add(this.label1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.categorias_bs, "Nombre", true));
             this.Name = "ABM_Articulos";
             this.Text = "ABM_Articulos";
             ((System.ComponentModel.ISupportInitialize)(this.articulosbd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categorias_bs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datosGrillaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriaViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,11 +312,10 @@ namespace Sistema.Formularios
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_guardar;
         private System.Windows.Forms.BindingSource articulosbd;
-        private System.Windows.Forms.BindingSource categorias_bs;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox stock_txt;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.BindingSource datosGrillaBindingSource;
+        private System.Windows.Forms.BindingSource categoriaViewModelBindingSource;
     }
 }
