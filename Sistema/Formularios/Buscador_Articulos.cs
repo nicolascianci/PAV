@@ -8,15 +8,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Sistema.ViewModels;
+using Datos;
 
 namespace Sistema.Formularios
 {
     public partial class Buscador_Articulos : Form
     {
+        R_Articulos repositorio = new R_Articulos();
+
         public Buscador_Articulos(List<articulo> lista_articulos_par)
         {
             InitializeComponent();
-            this.articulos_bs.DataSource = lista_articulos_par;
+            
+            this.articulosBs.DataSource = lista_articulos_par
+                .Select(p => new BuscadorArticulosViewModel
+                {
+                    IdArticulo = p.id,
+                    descripcionArticulo = p.Descripcion,
+                    costoSinIva = p.CostoSinIva,
+                    costoConIva = p.CostoConIva,
+                    precioFinal = p.Preciofinal,
+                    stock = p.stock,
+                    estadoProducto = p.Estado,
+                    nombreCategoria = p.categoria.Nombre
+
+                });
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
@@ -25,7 +42,10 @@ namespace Sistema.Formularios
             {
                 case Keys.Enter:
                     if (dataGridView1.CurrentRow != null)
-                        this.Tag = (articulo)this.dataGridView1.CurrentRow.DataBoundItem;
+                    {
+                        BuscadorArticulosViewModel articulo = (BuscadorArticulosViewModel)this.dataGridView1.CurrentRow.DataBoundItem;
+                        this.Tag = repositorio.Uno(articulo.IdArticulo);
+                    }
                     else
                         this.Tag = null;
                     

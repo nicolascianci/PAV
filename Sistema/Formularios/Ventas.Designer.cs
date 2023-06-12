@@ -56,6 +56,8 @@ namespace Sistema.Formularios
             this.label3 = new System.Windows.Forms.Label();
             this.Confirmar_btn = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.articulos_ctrl)).BeginInit();
@@ -237,7 +239,7 @@ namespace Sistema.Formularios
             this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label.Location = new System.Drawing.Point(50, 17);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(61, 16);
+            this.label.Size = new System.Drawing.Size(60, 16);
             this.label.TabIndex = 2;
             this.label.Text = "Articulo";
             // 
@@ -245,7 +247,7 @@ namespace Sistema.Formularios
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(24, 352);
+            this.label1.Location = new System.Drawing.Point(24, 400);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 3;
@@ -255,7 +257,7 @@ namespace Sistema.Formularios
             // 
             this.Total_ctrl.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.Total_ctrl.Enabled = false;
-            this.Total_ctrl.Location = new System.Drawing.Point(169, 354);
+            this.Total_ctrl.Location = new System.Drawing.Point(169, 402);
             this.Total_ctrl.Name = "Total_ctrl";
             this.Total_ctrl.ReadOnly = true;
             this.Total_ctrl.Size = new System.Drawing.Size(160, 20);
@@ -266,7 +268,7 @@ namespace Sistema.Formularios
             // descuento_txb
             // 
             this.descuento_txb.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.descuento_txb.Location = new System.Drawing.Point(169, 392);
+            this.descuento_txb.Location = new System.Drawing.Point(169, 440);
             this.descuento_txb.Name = "descuento_txb";
             this.descuento_txb.ReadOnly = true;
             this.descuento_txb.Size = new System.Drawing.Size(160, 20);
@@ -279,7 +281,7 @@ namespace Sistema.Formularios
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(24, 392);
+            this.label2.Location = new System.Drawing.Point(24, 440);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(118, 20);
             this.label2.TabIndex = 5;
@@ -290,7 +292,7 @@ namespace Sistema.Formularios
             this.total_descuento_txb.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.total_descuento_txb.Enabled = false;
             this.total_descuento_txb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.total_descuento_txb.Location = new System.Drawing.Point(169, 428);
+            this.total_descuento_txb.Location = new System.Drawing.Point(169, 476);
             this.total_descuento_txb.Name = "total_descuento_txb";
             this.total_descuento_txb.ReadOnly = true;
             this.total_descuento_txb.Size = new System.Drawing.Size(160, 22);
@@ -302,7 +304,7 @@ namespace Sistema.Formularios
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(24, 428);
+            this.label3.Location = new System.Drawing.Point(24, 476);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(135, 20);
             this.label3.TabIndex = 7;
@@ -330,12 +332,32 @@ namespace Sistema.Formularios
             this.label5.TabIndex = 10;
             this.label5.Text = "Presione  \"Enter\" para ingresar el articulo";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(25, 351);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(203, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Presione  \"Suprimir\" para borrar el articulo";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(25, 368);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(204, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Presione  \"F2\" para ingresar el descuento";
+            // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(798, 462);
+            this.ClientSize = new System.Drawing.Size(798, 505);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.Confirmar_btn);
             this.Controls.Add(this.total_descuento_txb);
@@ -391,5 +413,7 @@ namespace Sistema.Formularios
         private System.Windows.Forms.DataGridViewTextBoxColumn totalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn stockDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource operacionViewModelBindingSource;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }

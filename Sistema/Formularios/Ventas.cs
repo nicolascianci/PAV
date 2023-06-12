@@ -68,6 +68,7 @@ namespace Sistema.Formularios
             {
                 case Keys.F2:
                     this.descuento_txb.ReadOnly = false;
+                    this.descuento_txb.Focus();
                     break;
 
                 case Keys.Enter:
@@ -118,7 +119,15 @@ namespace Sistema.Formularios
                         presentador_tmp.Eliminar_Articulo(Convert.ToInt32(_articulo.idArticulo));
                     }
 
-                    break;                
+                    break;
+
+                case Keys.F2:
+                    this.descuento_txb.ReadOnly = false;
+                    this.descuento_txb.Focus();
+                    break;
+
+                default:
+                    break;
             }
 
         }
@@ -145,6 +154,7 @@ namespace Sistema.Formularios
         {
             OnRealizarOperacion(this.lista_articulos);
             //this.presentador_tmp.Realizar_Operacion();
+            MessageBox.Show("Se realizo con exito la venta.", "Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.presentador_tmp.LimpiarFormulario();
         }
 

@@ -24,15 +24,33 @@ namespace Presentadores
 
 
         public List<GestionArticulosViewModel> ActualizarListado()
-        {            
-            return _repositorio.Actualizar();
+        {
+            return _repositorio.Actualizar().Select(p => new GestionArticulosViewModel
+            {
+                IdArticulo = p.id,
+                descripcionArticulo = p.Descripcion,
+                costoSinIva = p.CostoSinIva,
+                costoConIva = p.CostoConIva,
+                precioFinal = p.Preciofinal,
+                estadoProducto = p.Estado,
+                nombreCategoria = p.categoria.Nombre
+            }).ToList();
             
         }
 
         public List<GestionArticulosViewModel> BuscarProductos(string nombre)
         {
             
-            return _repositorio.BuscarProductos(nombre);
+            return _repositorio.BuscarProductos(nombre).Select(p => new GestionArticulosViewModel
+            {
+                IdArticulo = p.id,
+                descripcionArticulo = p.Descripcion,
+                costoSinIva = p.CostoSinIva,
+                costoConIva = p.CostoConIva,
+                precioFinal = p.Preciofinal,
+                estadoProducto = p.Estado,
+                nombreCategoria = p.categoria.Nombre
+            }).ToList(); ;
             
         }
 

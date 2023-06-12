@@ -89,7 +89,7 @@ namespace Presentadores
 
                 negocio_ventas_tmp.Guardar_Venta(operacion_tmp);
 
-                scope.Complete();
+                scope.Complete();                
             }
 
         }
@@ -97,9 +97,8 @@ namespace Presentadores
         public List<articulo> Buscar_Articulos()
         {
             lista_articulos_tmp = negocio_articulo_tmp.Buscar_Articulos(this.vista_tmp.nombre_articulo);
-
            
-                return lista_articulos_tmp;
+            return lista_articulos_tmp;
             
         }
 

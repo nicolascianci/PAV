@@ -125,6 +125,11 @@
     <Compile Include="Presentadores\Presentador_Ventas_Consultas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BuscadorArticulosViewModel.cs" />
+    <Compile Include="ViewModels\CategoriaViewModel.cs" />
+    <Compile Include="ViewModels\ConsultaVentasViewModel.cs" />
+    <Compile Include="ViewModels\GestionArticulosViewModel.cs" />
+    <Compile Include="ViewModels\OperacionViewModel.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,6 +172,7 @@
     <None Include="Properties\DataSources\Dominio.ViewModels.ConsultaVentasViewModel.datasource" />
     <None Include="Properties\DataSources\Dominio.ViewModels.GestionArticulosViewModel.datasource" />
     <None Include="Properties\DataSources\Dominio.ViewModels.OperacionViewModel.datasource" />
+    <None Include="Properties\DataSources\Sistema.ViewModels.BuscadorArticulosViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

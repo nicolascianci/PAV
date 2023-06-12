@@ -63,10 +63,6 @@
     <Compile Include="Detalle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tipo_Operacion.cs" />
-    <Compile Include="ViewModels\CategoriaViewModel.cs" />
-    <Compile Include="ViewModels\ConsultaVentasViewModel.cs" />
-    <Compile Include="ViewModels\GestionArticulosViewModel.cs" />
-    <Compile Include="ViewModels\OperacionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

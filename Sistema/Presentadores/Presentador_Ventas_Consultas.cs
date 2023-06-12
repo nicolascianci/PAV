@@ -26,7 +26,14 @@ namespace Presentadores
 
         public void Buscar_Ventas()
         {
-            lista_ventas = repositorio_ventas.Buscar_Ventas(this.vista_tmp.Desde, this.vista_tmp.Hasta);
+            lista_ventas = repositorio_ventas.Buscar_Ventas(this.vista_tmp.Desde, this.vista_tmp.Hasta).
+            Select(p => new ConsultaVentasViewModel
+            {
+                numeroVenta = p.ID_Operacion,
+                numeroFactura = $"{p.puntoVenta : 0000} - {p.numeroVenta: 00000000}",
+                fechaVenta = p.fecha,
+                totalVenta = p.total
+            }).ToList();
             this.vista_tmp.lista_ventas = lista_ventas;
             this.vista_tmp.total = lista_ventas.Sum(x => Convert.ToDecimal(x.totalVenta));
 

@@ -1,5 +1,4 @@
 ﻿using Dominio;
-using Dominio.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,18 +18,9 @@ namespace Datos
             repositorio = new Modelo();
         }
 
-        public List<GestionArticulosViewModel> Actualizar()
+        public List<articulo> Actualizar()
         {
-            return repositorio.articulos.Where(x => x.febaj == null).Select(p => new GestionArticulosViewModel
-            {
-                IdArticulo = p.id,
-                descripcionArticulo = p.Descripcion,
-                costoSinIva = p.CostoSinIva,
-                //costoConIva = p.CostoConIva,
-                //precioFinal = p.Preciofinal,
-                estadoProducto = p.Estado,
-                nombreCategoria = p.categoria.Nombre
-            }).ToList();
+            return repositorio.articulos.Where(x => x.febaj == null).ToList();
         }
 
         public void AgregarProducto(articulo p)
@@ -71,18 +61,9 @@ namespace Datos
             repositorio.SaveChanges();
         }
 
-        public List<GestionArticulosViewModel> BuscarProductos(string nombre)
+        public List<articulo> BuscarProductos(string nombre)
         {
-            return repositorio.articulos.Where(x => x.Descripcion.Contains(nombre)).Select(p => new GestionArticulosViewModel
-            {
-                IdArticulo = p.id,
-                descripcionArticulo = p.Descripcion,
-                costoConIva = p.CostoConIva,
-                costoSinIva = p.CostoSinIva,
-                precioFinal = p.Preciofinal,
-                estadoProducto = p.Estado,
-                nombreCategoria = p.categoria.Nombre
-            }).ToList();
+            return repositorio.articulos.Where(x => x.Descripcion.Contains(nombre)).ToList();
         }
 
         public List<categoria> Buscar_Todas_Categorias()
@@ -90,17 +71,9 @@ namespace Datos
             return repositorio.categorias.Where(x => x.febaj == null).ToList();
         }
 
-        public List<CategoriaViewModel> Buscar_Todas_Categorias_Item()
-        {
-            List<CategoriaViewModel> lista_tmp = new List<CategoriaViewModel>();
-
-            lista_tmp = repositorio.categorias.Where(x => x.febaj == null).Select(p => new CategoriaViewModel
-            {
-                idCategoria = p.id,
-                nombreCategoria = p.Nombre
-            }).ToList();
-
-            return lista_tmp;
+        public List<categoria> Buscar_Todas_Categorias_Item()
+        {          
+           return repositorio.categorias.Where(x => x.febaj == null).ToList();           
         }
 
         public categoria GetCategoria(int idcategoria)

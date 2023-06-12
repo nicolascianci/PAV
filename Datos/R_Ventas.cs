@@ -1,5 +1,4 @@
 ﻿using Dominio;
-using Dominio.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,25 +34,14 @@ namespace Datos
             repositorio.SaveChanges();
         }
 
-        public List<ConsultaVentasViewModel> Buscar_Ventas(DateTime desde_par, DateTime hasta_par)
+        public List<Operacion> Buscar_Ventas(DateTime desde_par, DateTime hasta_par)
         {
-            List<ConsultaVentasViewModel> lista_tmp = new List<ConsultaVentasViewModel>();
 
-            lista_tmp = (from v in repositorio.operaciones
-                         where v.TipoOperacion == Tipo_Operacion.Venta
-                         && v.fecha >= desde_par
-                         && v.fecha <= hasta_par
-                         select v).ToList().Select(p => new ConsultaVentasViewModel
-                         {
-                             numeroVenta = p.ID_Operacion,
-                             numeroFactura = p.puntoVenta.ToString() + '-' + p.numeroVenta.ToString(),
-                             fechaVenta = p.fecha,
-                             totalVenta = p.total
-                         }).ToList();
-
-            
-
-            return lista_tmp;
+            return (from v in repositorio.operaciones
+                    where v.TipoOperacion == Tipo_Operacion.Venta
+                    && v.fecha >= desde_par
+                    && v.fecha <= hasta_par
+                    select v).ToList();
         }
 
 

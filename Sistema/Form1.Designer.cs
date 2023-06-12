@@ -30,7 +30,6 @@ namespace Sistema
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.vENTASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevaVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +41,7 @@ namespace Sistema
             this.cONSULTARCAJASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cATEGORIAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gESTIONToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -62,19 +62,6 @@ namespace Sistema
             this.menuStrip1.Stretch = false;
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::Sistema.Properties.Resources.El_Pastelero;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 28);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(20);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(800, 422);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // vENTASToolStripMenuItem
             // 
@@ -162,6 +149,19 @@ namespace Sistema
             this.gESTIONToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
             this.gESTIONToolStripMenuItem1.Text = "GESTION";
             this.gESTIONToolStripMenuItem1.Click += new System.EventHandler(this.gESTIONToolStripMenuItem1_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::Sistema.Properties.Resources.El_Pastelero;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 28);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(20);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(800, 422);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
