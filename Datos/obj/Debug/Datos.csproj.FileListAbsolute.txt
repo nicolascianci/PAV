@@ -773,3 +773,5 @@ C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.csproj.CopyComplete
 C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.dll
 C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.pdb
 C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.Migrations.nuevos_cambios.resources
+C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.Migrations.cambiodeentidad.resources
+C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.Migrations.entidadCategoria.resources

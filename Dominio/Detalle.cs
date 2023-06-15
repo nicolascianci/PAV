@@ -16,21 +16,21 @@ namespace Dominio
         [ForeignKey("Operacion")]
         public int? IDOperacion { get; set; }
 
-        public int articuloID { get; set; }
-        public double precioUnitario { get; set; }
-        public decimal cantidad { get; set; }
+        public int ArticuloID { get; set; }
+        public double PrecioUnitario { get; set; }
+        public decimal Cantidad { get; set; }
 
         public double Preciofinal
         {
             get
             {
-                return Math.Round((double)cantidad * (double)precioUnitario, 2);
+                return Math.Round((double)Cantidad * (double)PrecioUnitario, 2);
 
             }
         }
 
 
-        public virtual articulo articulo { get; set; }
+        public virtual Articulo Articulo { get; set; }
         public virtual Operacion Operacion { get; set; }
     }
 }

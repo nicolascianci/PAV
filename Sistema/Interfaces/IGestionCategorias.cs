@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
-    public interface IGestion_Categorias
+    public interface IGestionCategorias
     {
-        string nombre_categoria { get; }
-        void Actualizar_Categorias();
+        string NombreCategoria { get; }
+        void ActualizarCategorias();
     }
 }

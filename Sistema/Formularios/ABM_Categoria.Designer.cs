@@ -58,7 +58,7 @@ namespace Sistema.Formularios
             // 
             // BS_Categoria
             // 
-            this.BS_Categoria.DataSource = typeof(Dominio.categoria);
+            this.BS_Categoria.DataSource = typeof(Dominio.Categoria);
             // 
             // guardar_btn
             // 

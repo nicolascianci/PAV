@@ -10,14 +10,13 @@ namespace Interfaces
 {
     public interface IOperacion
     {
-        List<OperacionViewModel> lista_articulos { get; set; }
-        string nombre_articulo { get; set; }
-        double cantidad { get; set; }
-        double total_sin_descuento { get; set; }
-        double descuento { get; set; }
-        double total_con_descuento{ get; set; }
-        //Tipo_Operacion tipo_operacion { get; set; }
-
-        event EventHandler<List<OperacionViewModel>> Realizar_Operacion;
+        List<OperacionViewModel> ListaArticulos { get; set; }
+        string NombreArticulo { get; set; }
+        double Cantidad { get; set; }
+        double TotalSinDescuento { get; set; }
+        double Descuento { get; set; }
+        double TotalConDescuento{ get; set; }
+        
+        event EventHandler<List<OperacionViewModel>> RealizarOperacion;
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace Sistema.Formularios
 {
-    partial class ABM_Articulos
+    partial class ABMArticulos
     {
         /// <summary>
         /// Required designer variable.
@@ -69,7 +69,7 @@ namespace Sistema.Formularios
             // 
             // articulosbd
             // 
-            this.articulosbd.DataSource = typeof(Dominio.articulo);
+            this.articulosbd.DataSource = typeof(Dominio.Articulo);
             // 
             // txt_PrecioFinal
             // 

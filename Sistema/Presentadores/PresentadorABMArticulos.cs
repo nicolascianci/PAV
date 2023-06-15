@@ -12,48 +12,48 @@ namespace Presentadores
 {
     public class PresentadorABMArticulos
     {
-        IABMArticulos vista_tmp;
-        private R_ABMArticulos _repositorio;
+        IABMArticulos _vista;
+        private RepositorioABMArticulos _repositorio;
         private List<CategoriaViewModel> _lista_categorias = new List<CategoriaViewModel>();
        
 
-        public PresentadorABMArticulos(IABMArticulos vista_par)
+        public PresentadorABMArticulos(IABMArticulos vistaPar)
         {
-            vista_tmp = vista_par;
-            _repositorio = new R_ABMArticulos();
-           
-            vista_tmp.AgregarProductoAceptar += this.AgregarProducto;
-            vista_tmp.EditarProductoAceptar += this.EditarProducto;
-            vista_tmp.EliminarProductoAceptar += this.EliminarProducto;
+            _vista = vistaPar;
+            _repositorio = new RepositorioABMArticulos();
+
+            _vista.AgregarProductoAceptar += this.AgregarProducto;
+            _vista.EditarProductoAceptar += this.EditarProducto;
+            _vista.EliminarProductoAceptar += this.EliminarProducto;
         }
 
-        public void AgregarProducto(object sender, articulo p)
+        public void AgregarProducto(object sender, Articulo p)
         {
             _repositorio.AgregarProducto(p);
         }
 
-        public void EditarProducto(object sender, articulo p)
+        public void EditarProducto(object sender, Articulo p)
         {
             _repositorio.EditarProducto(p);
         }
 
-        public void EliminarProducto(object sender, articulo p)
+        public void EliminarProducto(object sender, Articulo p)
         {
             _repositorio.EliminarProducto(p);
         }
 
         public List<CategoriaViewModel> Buscar_Categorias()
         {
-            _lista_categorias = _repositorio.Buscar_Todas_Categorias().Select(x => new CategoriaViewModel
+            _lista_categorias = _repositorio.BuscarTodasCategorias().Select(x => new CategoriaViewModel
             {
-                idCategoria = x.id,
-                nombreCategoria = x.Nombre
-            }).OrderBy(x => x.idCategoria).ToList();
+                IdCategoria = x.Id,
+                NombreCategoria = x.Nombre
+            }).OrderBy(x => x.IdCategoria).ToList();
 
             return _lista_categorias;
         }
 
-        public categoria Devolver_Categoria(int idcategoria)
+        public Categoria Devolver_Categoria(int idcategoria)
         {
             return _repositorio.GetCategoria(idcategoria);
         }

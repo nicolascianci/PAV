@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
-    public interface IConsulta_Ventas
+    public interface IConsultaVentas
     {
         DateTime Desde { get; }
         DateTime Hasta { get; }
-        List<ConsultaVentasViewModel> lista_ventas { get; set; }
-        int idventa { get; }
-        decimal total { set; }
+        List<ConsultaVentasViewModel> ListaVentas { get; set; }
+        int IdVenta { get; }
+        decimal Total { set; }
     }
 }

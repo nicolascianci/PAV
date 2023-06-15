@@ -16,14 +16,14 @@ namespace Sistema.Formularios
 {
     public partial class Ventas : Form, IOperacion
     {
-        List<articulo> lista_articulos_tmp = new List<articulo>();
-        articulo articulo_tmp = new articulo();
-        PresentadorVentas presentador_tmp;
+        List<Articulo> _listaArticulos = new List<Articulo>();
+        Articulo _articulo = new Articulo();
+        PresentadorVentas _presentador;
 
         public Ventas()
         {
             InitializeComponent();
-            presentador_tmp = new PresentadorVentas(this);
+            _presentador = new PresentadorVentas(this);
             Total_ctrl.Text = string.Format("{0:#,##0.00}", double.Parse(descuento_txb.Text));
             //cantidad_txb.Text = string.Format("{0:#,##0.00}", double.Parse(cantidad_txb.Text));
             total_descuento_txb.Text = string.Format("{0:#,##0.00}", double.Parse(descuento_txb.Text));
@@ -32,7 +32,7 @@ namespace Sistema.Formularios
         public Ventas(int idventa_par)
         {
             InitializeComponent();
-            presentador_tmp = new PresentadorVentas(this,idventa_par);
+            _presentador = new PresentadorVentas(this,idventa_par);
             Total_ctrl.Text = string.Format("{0:#,##0.00}", double.Parse(Total_ctrl.Text));
             //cantidad_txb.Text = string.Format("{0:#,##0.00}", double.Parse(cantidad_txb.Text));
             //descuento_txb.Text = string.Format("P", double.Parse(descuento_txb.Text));
@@ -41,7 +41,7 @@ namespace Sistema.Formularios
             this.articulos_txt.Enabled = false;
         }
 
-        public List<OperacionViewModel> lista_articulos
+        public List<OperacionViewModel> ListaArticulos
         {
             get
             {
@@ -53,14 +53,14 @@ namespace Sistema.Formularios
                 this.operacionViewModelBindingSource.DataSource = value;
             }
         }
-        public string nombre_articulo { get => this.articulos_txt.Text; set => this.articulos_txt.Text = value; }
-        public double cantidad { get => Convert.ToDouble(cantidad_txb.Text); set => cantidad_txb.Text = value.ToString(); }
-        public double total_sin_descuento { get => Convert.ToDouble(this.Total_ctrl.Text); set => this.Total_ctrl.Text = value.ToString("N2"); }
+        public string NombreArticulo { get => this.articulos_txt.Text; set => this.articulos_txt.Text = value; }
+        public double Cantidad { get => Convert.ToDouble(cantidad_txb.Text); set => cantidad_txb.Text = value.ToString(); }
+        public double TotalSinDescuento { get => Convert.ToDouble(this.Total_ctrl.Text); set => this.Total_ctrl.Text = value.ToString("N2"); }
 
-        public double total_con_descuento { get => Convert.ToDouble(total_descuento_txb.Text); set => this.total_descuento_txb.Text = value.ToString("N2"); }
-        double IOperacion.descuento { get => Convert.ToDouble(this.descuento_txb.Text); set => this.descuento_txb.Text = value.ToString(); }
+        public double TotalConDescuento { get => Convert.ToDouble(total_descuento_txb.Text); set => this.total_descuento_txb.Text = value.ToString("N2"); }
+        double IOperacion.Descuento { get => Convert.ToDouble(this.descuento_txb.Text); set => this.descuento_txb.Text = value.ToString(); }
 
-        public event EventHandler<List<OperacionViewModel>> Realizar_Operacion;
+        public event EventHandler<List<OperacionViewModel>> RealizarOperacion;
 
         private void articulos_txt_KeyDown(object sender, KeyEventArgs e)
         {
@@ -72,30 +72,30 @@ namespace Sistema.Formularios
                     break;
 
                 case Keys.Enter:
-                    lista_articulos_tmp = presentador_tmp.Buscar_Articulos();
+                    _listaArticulos = _presentador.BuscarArticulos();
 
-                    if (lista_articulos_tmp.Count > 1)
+                    if (_listaArticulos.Count > 1)
                     {
-                        Buscador_Articulos _form = new Buscador_Articulos(lista_articulos_tmp);
+                        Buscador_Articulos _form = new Buscador_Articulos(_listaArticulos);
                         _form.ShowDialog();
 
-                        articulo_tmp = null;
-                        articulo_tmp = (articulo)_form.Tag;
+                        _articulo = null;
+                        _articulo = (Articulo)_form.Tag;
 
-                        this.articulo_lb.Text = articulo_tmp.Descripcion;
+                        this.articulo_lb.Text = _articulo.Descripcion;
                         this.panel2.Visible = true;
                         this.cantidad_txb.Focus();
 
                     }
                     else
                     {
-                        if (lista_articulos_tmp.Count == 0)
+                        if (_listaArticulos.Count == 0)
                         {
                             break;
                         }
 
-                        this.articulo_lb.Text = lista_articulos_tmp.FirstOrDefault().Descripcion;
-                        articulo_tmp = lista_articulos_tmp.FirstOrDefault();
+                        this.articulo_lb.Text = _listaArticulos.FirstOrDefault().Descripcion;
+                        _articulo = _listaArticulos.FirstOrDefault();
                         this.cantidad_txb.Focus();
                         this.panel2.Visible = true;
                     }
@@ -116,7 +116,7 @@ namespace Sistema.Formularios
                     {
                         var _articulo = (OperacionViewModel)this.articulos_ctrl.CurrentRow.DataBoundItem;
 
-                        presentador_tmp.Eliminar_Articulo(Convert.ToInt32(_articulo.idArticulo));
+                        _presentador.EliminarArticulo(Convert.ToInt32(_articulo.IdArticulo));
                     }
 
                     break;
@@ -138,9 +138,9 @@ namespace Sistema.Formularios
             switch (e.KeyData)
             {
                 case Keys.Enter:
-                    if (this.cantidad > 0)
+                    if (this.Cantidad > 0)
                     {
-                        presentador_tmp.Agregar_Detalle(articulo_tmp);
+                        _presentador.AgregarDetalle(_articulo);
                         this.panel2.Visible = false;
                     }
                     else
@@ -152,23 +152,23 @@ namespace Sistema.Formularios
 
         private void Confirmar_btn_Click(object sender, EventArgs e)
         {
-            OnRealizarOperacion(this.lista_articulos);
+            OnRealizarOperacion(this.ListaArticulos);
             //this.presentador_tmp.Realizar_Operacion();
             MessageBox.Show("Se realizo con exito la venta.", "Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.presentador_tmp.LimpiarFormulario();
+            this._presentador.LimpiarFormulario();
         }
 
         protected virtual void OnRealizarOperacion(List<OperacionViewModel> lista_par)
         {
-            Realizar_Operacion?.Invoke(this, lista_par);
+            RealizarOperacion?.Invoke(this, lista_par);
         }
 
         private void panel_confirma_ctn_Click(object sender, EventArgs e)
         {
-            if (this.cantidad > 0)
+            if (this.Cantidad > 0)
             {
-                presentador_tmp.Agregar_Detalle(articulo_tmp);
-                this.cantidad = 0;
+                _presentador.AgregarDetalle(_articulo);
+                this.Cantidad = 0;
                 this.panel2.Visible = false;
             }
             else
@@ -178,8 +178,8 @@ namespace Sistema.Formularios
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.nombre_articulo = "";
-            this.cantidad = 0;
+            this.NombreArticulo = "";
+            this.Cantidad = 0;
             this.panel2.Visible = false;
         }
 
@@ -198,7 +198,7 @@ namespace Sistema.Formularios
 
         private void descuento_txb_Leave(object sender, EventArgs e)
         {
-            presentador_tmp.Totales();
+            _presentador.Totales();
         }
     }
 }

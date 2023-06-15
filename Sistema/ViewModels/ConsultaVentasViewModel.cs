@@ -8,9 +8,9 @@ namespace Dominio.ViewModels
 {
     public class ConsultaVentasViewModel
     {
-        public int numeroVenta { get; set; }
-        public string numeroFactura { get; set; }
-        public DateTime fechaVenta { get; set; }
-        public double totalVenta { get; set; }
+        public int NumeroVenta { get; set; }
+        public string NumeroFactura { get; set; }
+        public DateTime FechaVenta { get; set; }
+        public double TotalVenta { get; set; }
     }
 }

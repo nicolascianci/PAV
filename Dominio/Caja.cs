@@ -12,7 +12,7 @@ namespace Dominio
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int idcaja { get; set; }
+        public int IdCaja { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime? FechaCierre { get; set; }
         

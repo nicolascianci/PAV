@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class articulo
+    public class Articulo
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
         public string Codigo { get; set; }
         public string Descripcion { get; set; }
         public double CostoSinIva { get; set; }
@@ -37,14 +37,14 @@ namespace Dominio
         }
         public EstadoProducto Estado { get; set; }
 
-        public DateTime? fealt { get; set; }
-        public DateTime? femod { get; set; }
-        public DateTime? febaj { get; set; }
+        public DateTime? Fealt { get; set; }
+        public DateTime? Femod { get; set; }
+        public DateTime? Febaj { get; set; }
 
-        public decimal stock { get; set; }
+        public decimal Stock { get; set; }
 
         //[ForeignKey ("categoria")]
         public int? CategoriaId { get; set; }
-        public virtual categoria categoria { get; set; }
+        public virtual Categoria Categoria { get; set; }
     }
 }

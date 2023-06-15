@@ -8,18 +8,18 @@ namespace Dominio.ViewModels
 {
     public class OperacionViewModel
     {
-        public int idArticulo { get; set; }
-        public string descripcionArticulo { get; set; }
-        public double precioUnitario { get; set; }
-        public double cantidad { get; set; }
-        public double total
+        public int IdArticulo { get; set; }
+        public string DescripcionArticulo { get; set; }
+        public double PrecioUnitario { get; set; }
+        public double Cantidad { get; set; }
+        public double Total
         {
             get
             {
-                return Math.Round((double)cantidad * (double)precioUnitario, 2);
+                return Math.Round((double)Cantidad * (double)PrecioUnitario, 2);
 
             }
         }
-        public double stock { get; set; }
+        public double Stock { get; set; }
     }
 }

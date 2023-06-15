@@ -14,18 +14,18 @@ using System.Windows.Forms;
 
 namespace Sistema.Formularios
 {
-    public partial class ABM_Articulos : Form, IABMArticulos
+    public partial class ABMArticulos : Form, IABMArticulos
     {
-        articulo articulos_tmp = new articulo();
+        Articulo _articulos = new Articulo();
         CategoriaViewModel _categoria = new CategoriaViewModel();
         private PresentadorABMArticulos _presentador;
         public bool _nuevo;
 
-        public ABM_Articulos()
+        public ABMArticulos()
         {
             InitializeComponent();
             _presentador = new PresentadorABMArticulos(this);
-            articulosbd.DataSource = articulos_tmp;
+            articulosbd.DataSource = _articulos;
             comboBox1.DataSource = Enum.GetValues(typeof(EstadoProducto));
             categoriaViewModelBindingSource.DataSource = _presentador.Buscar_Categorias();
             comboBox2.DataSource = categoriaViewModelBindingSource.DataSource;
@@ -34,30 +34,30 @@ namespace Sistema.Formularios
            
         }
 
-        public event EventHandler<articulo> AgregarProductoAceptar;
-        public event EventHandler<articulo> EditarProductoAceptar;
-        public event EventHandler<articulo> EliminarProductoAceptar;
+        public event EventHandler<Articulo> AgregarProductoAceptar;
+        public event EventHandler<Articulo> EditarProductoAceptar;
+        public event EventHandler<Articulo> EliminarProductoAceptar;
 
 
-        public void ActualizarProducto(articulo p)
+        public void ActualizarProducto(Articulo p)
         {
-            articulos_tmp = p;
-            articulosbd.DataSource = articulos_tmp;
+            _articulos = p;
+            articulosbd.DataSource = _articulos;
             categoriaViewModelBindingSource.Position = (int)p.CategoriaId - 1;
         }
 
 
-        protected virtual void OnAgregarProductoAceptar(articulo p)
+        protected virtual void OnAgregarProductoAceptar(Articulo p)
         {
             AgregarProductoAceptar?.Invoke(this, p);
         }
 
-        protected virtual void OnEditarProductoAceptar(articulo p)
+        protected virtual void OnEditarProductoAceptar(Articulo p)
         {
             EditarProductoAceptar?.Invoke(this, p);
         }
 
-        protected virtual void OnEliminarProductoAceptar(articulo p)
+        protected virtual void OnEliminarProductoAceptar(Articulo p)
         {
             EliminarProductoAceptar?.Invoke(this, p);
         }        
@@ -69,15 +69,15 @@ namespace Sistema.Formularios
             var resultado = MessageBox.Show("¿Deseas eliminar el Producto?", "Producto", MessageBoxButtons.OKCancel);
             if (resultado == DialogResult.OK)
             {
-                OnEliminarProductoAceptar(articulos_tmp);
+                OnEliminarProductoAceptar(_articulos);
                 this.Dispose();
             }
         }
 
-        public void Modificar(articulo articulo_par)
+        public void Modificar(Articulo articuloPar)
         {
-            articulosbd.DataSource = articulo_par;
-            categoriaViewModelBindingSource.Position = (int)articulo_par.CategoriaId - 1;
+            articulosbd.DataSource = articuloPar;
+            categoriaViewModelBindingSource.Position = (int)articuloPar.CategoriaId - 1;
         }
 
         private void btn_guardar_Click_1(object sender, EventArgs e)
@@ -89,18 +89,18 @@ namespace Sistema.Formularios
                 if (resultado == DialogResult.OK)
                 {
                     _categoria = (CategoriaViewModel)categoriaViewModelBindingSource.Current;
-                    articulos_tmp.CategoriaId = Convert.ToInt32(_categoria.idCategoria);
-                    articulos_tmp.categoria = _presentador.Devolver_Categoria(_categoria.idCategoria);
-                    OnAgregarProductoAceptar(articulos_tmp);
+                    _articulos.CategoriaId = Convert.ToInt32(_categoria.IdCategoria);
+                    _articulos.Categoria = _presentador.Devolver_Categoria(_categoria.IdCategoria);
+                    OnAgregarProductoAceptar(_articulos);
 
                 }
             }
             else
             {
                 _categoria = (CategoriaViewModel)categoriaViewModelBindingSource.Current;
-                articulos_tmp.CategoriaId = Convert.ToInt32(_categoria.idCategoria);
-                articulos_tmp.categoria = _presentador.Devolver_Categoria(_categoria.idCategoria);
-                OnEditarProductoAceptar(articulos_tmp);
+                _articulos.CategoriaId = Convert.ToInt32(_categoria.IdCategoria);
+                _articulos.Categoria = _presentador.Devolver_Categoria(_categoria.IdCategoria);
+                OnEditarProductoAceptar(_articulos);
 
             }
 

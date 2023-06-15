@@ -14,129 +14,128 @@ namespace Presentadores
 {
     public class PresentadorVentas
     {
-        IOperacion vista_tmp;
-        Operacion operacion_tmp;
-        List<OperacionViewModel> lista_detalle;
+        IOperacion _vista;
+        Operacion _operacion;
+        List<OperacionViewModel> _listaDetalle;
 
-        List<articulo> lista_articulos_tmp = new List<articulo>();
+        List<Articulo> _listaArticulos = new List<Articulo>();
 
-        R_Articulos negocio_articulo_tmp;
-        R_Ventas negocio_ventas_tmp;
-        Tipo_Operacion tipo_oper = new Tipo_Operacion();
+        RepositorioArticulos _negocioArticulo;
+        RepositorioVentas _negocioVentas;
+        TipoOperacion _tipoOperacion = new TipoOperacion();
 
-        public PresentadorVentas(IOperacion vista_par)
+        public PresentadorVentas(IOperacion vistaPar)
         {
-            vista_tmp = vista_par;
-            operacion_tmp = new Operacion();
-            operacion_tmp.TipoOperacion = Tipo_Operacion.Venta;
-            lista_detalle = new List<OperacionViewModel>();
+            _vista = vistaPar;
+            _operacion = new Operacion();
+            _operacion.TipoOperacion = TipoOperacion.Venta;
+            _listaDetalle = new List<OperacionViewModel>();
 
-            negocio_articulo_tmp = new R_Articulos();
-            negocio_ventas_tmp = new R_Ventas();
+            _negocioArticulo = new RepositorioArticulos();
+            _negocioVentas = new RepositorioVentas();
 
-           vista_tmp.Realizar_Operacion += this.Vista_tmp_Realizar_Operacion;
+            _vista.RealizarOperacion += this.VistaRealizarOperacion;
         }
 
-        public PresentadorVentas(IOperacion vista_par, int idventa_par)
+        public PresentadorVentas(IOperacion vistaPar, int idVentaPar)
         {
-            vista_tmp = vista_par;
-            negocio_ventas_tmp = new R_Ventas();
-            negocio_articulo_tmp = new R_Articulos();
-            operacion_tmp = negocio_ventas_tmp.Buscar_Venta(idventa_par);
+            _vista = vistaPar;
+            _negocioVentas = new RepositorioVentas();
+            _negocioArticulo = new RepositorioArticulos();
+            _operacion = _negocioVentas.BuscarVenta(idVentaPar);
 
-            if(operacion_tmp != null)
+            if(_operacion != null)
             {
-                lista_detalle = new List<OperacionViewModel>();
-                lista_detalle = operacion_tmp.OperacionDetalle.Select(p => new OperacionViewModel
+                _listaDetalle = new List<OperacionViewModel>();
+                _listaDetalle = _operacion.OperacionDetalle.Select(p => new OperacionViewModel
                 {
-                    idArticulo = p.articuloID,
-                    descripcionArticulo = p.articulo.Descripcion,
-                    precioUnitario = p.precioUnitario,
-                    cantidad = (double)p.cantidad,
-                    stock = (double)p.articulo.stock
+                    IdArticulo = p.ArticuloID,
+                    DescripcionArticulo = p.Articulo.Descripcion,
+                    PrecioUnitario = p.PrecioUnitario,
+                    Cantidad = (double)p.Cantidad,
+                    Stock = (double)p.Articulo.Stock
                 }).ToList();
 
-                this.vista_tmp.lista_articulos = lista_detalle;
-                //this.vista_tmp.total_sin_descuento = operacion_tmp.totas_sin_descuento;
-                this.vista_tmp.descuento = operacion_tmp.descuento;
-                //this.vista_tmp.total_con_descuento = operacion_tmp.total;
+                this._vista.ListaArticulos = _listaDetalle;
+                this._vista.Descuento = _operacion.Descuento;
+                
                 this.Totales();
             }
         }
 
-        private void Vista_tmp_Realizar_Operacion(object sender, List<OperacionViewModel> e)
+        private void VistaRealizarOperacion(object sender, List<OperacionViewModel> e)
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                operacion_tmp.puntoVenta = 1;
-                operacion_tmp.numeroVenta = negocio_ventas_tmp.Obtener_Numero();
-                operacion_tmp.totalSinDescuento = this.vista_tmp.total_sin_descuento;
-                operacion_tmp.descuento = this.vista_tmp.descuento;
-                operacion_tmp.total = this.vista_tmp.total_con_descuento;
-                operacion_tmp.OperacionDetalle = new List<Detalle>();
+                _operacion.PuntoVenta = 1;
+                _operacion.NumeroVenta = _negocioVentas.ObtenerNumero();
+                _operacion.TotalSinDescuento = this._vista.TotalSinDescuento;
+                _operacion.Descuento = this._vista.Descuento;
+                _operacion.Total = this._vista.TotalConDescuento;
+                _operacion.OperacionDetalle = new List<Detalle>();
 
-                foreach (var item_tmp in e)
+                foreach (var Item in e)
                 {
                     Detalle _detalle = new Detalle();
-                    _detalle.articuloID = Convert.ToInt32(item_tmp.idArticulo);
+                    _detalle.ArticuloID = Convert.ToInt32(Item.IdArticulo);
                     //_detalle.articulo = negocio_articulo_tmp.Uno(Convert.ToInt32(item_tmp.codigo));
-                    _detalle.cantidad = Convert.ToDecimal(item_tmp.cantidad);
-                    _detalle.precioUnitario = Convert.ToDouble(item_tmp.precioUnitario);
+                    _detalle.Cantidad = Convert.ToDecimal(Item.Cantidad);
+                    _detalle.PrecioUnitario = Convert.ToDouble(Item.PrecioUnitario);
 
-                    operacion_tmp.OperacionDetalle.Add(_detalle);
-                    this.negocio_articulo_tmp.Actualizar_Stock(_detalle.articuloID, _detalle.cantidad);
+                    _operacion.OperacionDetalle.Add(_detalle);
+                    this._negocioArticulo.ActualizarStock(_detalle.ArticuloID, _detalle.Cantidad);
                 }
 
-                negocio_ventas_tmp.Guardar_Venta(operacion_tmp);
+                _negocioVentas.GuardarVenta(_operacion);
 
                 scope.Complete();                
             }
 
         }
 
-        public List<articulo> Buscar_Articulos()
+        public List<Articulo> BuscarArticulos()
         {
-            lista_articulos_tmp = negocio_articulo_tmp.Buscar_Articulos(this.vista_tmp.nombre_articulo);
+            _listaArticulos = _negocioArticulo.BuscarArticulos(this._vista.NombreArticulo);
            
-            return lista_articulos_tmp;
+            return _listaArticulos;
             
         }
 
 
-        public void Agregar_Detalle(articulo articulo_tmp)
+        public void AgregarDetalle(Articulo articuloPar)
         {
             OperacionViewModel _detalle = new OperacionViewModel();
 
-            if(!lista_detalle.Any(x => x.idArticulo == articulo_tmp.id))
+            if(!_listaDetalle.Any(x => x.IdArticulo == articuloPar.Id))
             {
-                _detalle.idArticulo = articulo_tmp.id;
-                _detalle.descripcionArticulo = articulo_tmp.Descripcion;
-                _detalle.precioUnitario = articulo_tmp.Preciofinal;
-                _detalle.cantidad = vista_tmp.cantidad;
-                _detalle.stock = (double)articulo_tmp.stock;
+                _detalle.IdArticulo = articuloPar.Id;
+                _detalle.DescripcionArticulo = articuloPar.Descripcion;
+                _detalle.PrecioUnitario = articuloPar.Preciofinal;
+                _detalle.Cantidad = _vista.Cantidad;
+                _detalle.Stock = (double)articuloPar.Stock;
 
-                lista_detalle.Add(_detalle);
+                _listaDetalle.Add(_detalle);
             }else
             {
-                var _item = lista_detalle.Where(x => x.idArticulo == articulo_tmp.id).FirstOrDefault();
-                int _indice = lista_detalle.IndexOf(_item);
-                lista_detalle.RemoveAt(_indice);
-                _item.cantidad = _item.cantidad + this.vista_tmp.cantidad;
-                lista_detalle.Insert(_indice, _item);
+                var _item = _listaDetalle.Where(x => x.IdArticulo == articuloPar.Id).FirstOrDefault();
+                int _indice = _listaDetalle.IndexOf(_item);
+                _listaDetalle.RemoveAt(_indice);
+                _item.Cantidad = _item.Cantidad + this._vista.Cantidad;
+                _listaDetalle.Insert(_indice, _item);
             }
 
-            this.vista_tmp.lista_articulos = lista_detalle;
-            this.vista_tmp.nombre_articulo = "";
+            this._vista.ListaArticulos = _listaDetalle;
+            this._vista.NombreArticulo = "";
             this.Totales();
         }
 
-        public void Eliminar_Articulo(int idarticulo_par)
+        public void EliminarArticulo(int idArticuloPar)
         {
-            var _item = lista_detalle.Where(x => Convert.ToInt32(x.idArticulo) == idarticulo_par).FirstOrDefault();
+            var _item = _listaDetalle.Where(x => Convert.ToInt32(x.IdArticulo) == idArticuloPar).FirstOrDefault();
 
-            lista_detalle.Remove(_item);
+            _listaDetalle.Remove(_item);
 
-            this.vista_tmp.lista_articulos = lista_detalle;
+            this._vista.ListaArticulos = _listaDetalle;
             this.Totales();
             
         }
@@ -145,32 +144,32 @@ namespace Presentadores
         {
             double _total = 0;
 
-            foreach(var item in this.vista_tmp.lista_articulos)
+            foreach(var item in this._vista.ListaArticulos)
             {
-                _total = _total + Convert.ToDouble(item.total);
+                _total = _total + Convert.ToDouble(item.Total);
 
             }
 
-            this.vista_tmp.total_sin_descuento = _total;
+            this._vista.TotalSinDescuento = _total;
 
-            if (this.vista_tmp.descuento != 0.00)
-                this.vista_tmp.total_con_descuento = _total * (1 - (this.vista_tmp.descuento/100));
+            if (this._vista.Descuento != 0.00)
+                this._vista.TotalConDescuento = _total * (1 - (this._vista.Descuento/100));
             else
-                this.vista_tmp.total_con_descuento = _total;
+                this._vista.TotalConDescuento = _total;
 
         }
 
         public void LimpiarFormulario()
         {
-            this.lista_articulos_tmp = new List<articulo>();
-            this.lista_detalle = new List<OperacionViewModel>();
+            this._listaArticulos = new List<Articulo>();
+            this._listaDetalle = new List<OperacionViewModel>();
 
-            this.vista_tmp.lista_articulos = lista_detalle;
-            this.vista_tmp.cantidad = 0;
-            this.vista_tmp.descuento = 0;
-            this.vista_tmp.nombre_articulo = "";
-            this.vista_tmp.total_con_descuento = 0;
-            this.vista_tmp.total_sin_descuento = 0;
+            this._vista.ListaArticulos = _listaDetalle;
+            this._vista.Cantidad = 0;
+            this._vista.Descuento = 0;
+            this._vista.NombreArticulo = "";
+            this._vista.TotalConDescuento = 0;
+            this._vista.TotalSinDescuento = 0;
             
 
         }

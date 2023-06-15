@@ -9,9 +9,9 @@ namespace Interfaces
 {
     public interface IABMCatagorias
     {
-        event EventHandler<categoria> AgregarCategoriaAceptar;
-        event EventHandler<categoria> EditarCategoriaAceptar;
-        event EventHandler<categoria> EliminarCategoriaAceptar;
-        void Modificar(categoria categoria_par);
+        event EventHandler<Categoria> AgregarCategoriaAceptar;
+        event EventHandler<Categoria> EditarCategoriaAceptar;
+        event EventHandler<Categoria> EliminarCategoriaAceptar;
+        void Modificar(Categoria categoria_par);
     }
 }

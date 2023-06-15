@@ -14,10 +14,10 @@ using System.Windows.Forms;
 
 namespace Sistema.Formularios
 {
-    public partial class Gestion_Articulos : Form, IGestion_Producto
+    public partial class Gestion_Articulos : Form, IGestionProducto
     {
 
-        private PresentadorGestion_Articulos _presentador;
+        private PresentadorGestionArticulos _presentador;
         //private List<VistaProducto> _productos = new List<VistaProducto>();
         private GestionArticulosViewModel _articulo;
 
@@ -25,11 +25,11 @@ namespace Sistema.Formularios
         public Gestion_Articulos()
         {
             InitializeComponent();
-            _presentador = new PresentadorGestion_Articulos(this);
+            _presentador = new PresentadorGestionArticulos(this);
             this.ActualizarLista();
         }
 
-        public string nombre_articulo => this.nombre_articulo_ctrl.Text;
+        public string NombreArticulo => this.nombre_articulo_ctrl.Text;
 
         public void ActualizarLista()
         {

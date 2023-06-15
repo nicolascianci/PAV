@@ -14,13 +14,13 @@ namespace Sistema
 {
     public partial class Form1 : Form
     {
-        Presentador_Inicio _presentador;
+        PresentadorInicio _presentador;
         public Form1()
         {
             InitializeComponent();
             this.pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             //this.BackgroundImageLayout = ImageLayout.Stretch;
-            _presentador = new Presentador_Inicio();
+            _presentador = new PresentadorInicio();
         }
 
         private void gESTIONToolStripMenuItem_Click(object sender, EventArgs e)

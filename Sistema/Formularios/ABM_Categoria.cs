@@ -15,7 +15,7 @@ namespace Sistema.Formularios
 {
     public partial class ABM_Categoria : Form, IABMCatagorias
     {
-        categoria _categoria = new categoria();
+        Categoria _categoria = new Categoria();
         public bool _nuevo;
         private PresentadorABM_Categoria _presentador;
 
@@ -27,27 +27,27 @@ namespace Sistema.Formularios
             BS_Categoria.DataSource = _categoria;
         }
 
-        public event EventHandler<categoria> AgregarCategoriaAceptar;
-        public event EventHandler<categoria> EditarCategoriaAceptar;
-        public event EventHandler<categoria> EliminarCategoriaAceptar;
+        public event EventHandler<Categoria> AgregarCategoriaAceptar;
+        public event EventHandler<Categoria> EditarCategoriaAceptar;
+        public event EventHandler<Categoria> EliminarCategoriaAceptar;
 
-        public void Modificar(categoria categoria_par)
+        public void Modificar(Categoria categoria_par)
         {
             _categoria = categoria_par;
             BS_Categoria.DataSource = _categoria;
         }
 
-        protected virtual void OnAgregarCategoria(categoria categoria_par)
+        protected virtual void OnAgregarCategoria(Categoria categoria_par)
         {
             AgregarCategoriaAceptar?.Invoke(this, categoria_par);
         }
 
-        protected virtual void OnEditarCategiaAceptar(categoria categoria_par)
+        protected virtual void OnEditarCategiaAceptar(Categoria categoria_par)
         {
             EditarCategoriaAceptar?.Invoke(this, categoria_par);
         }
 
-        protected virtual void OnEliminarCategoriaAceptar(categoria categoria_par)
+        protected virtual void OnEliminarCategoriaAceptar(Categoria categoria_par)
         {
             EliminarCategoriaAceptar?.Invoke(this, categoria_par);
         }

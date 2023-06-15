@@ -15,23 +15,23 @@ namespace Sistema.Formularios
 {
     public partial class Buscador_Articulos : Form
     {
-        R_Articulos repositorio = new R_Articulos();
+        RepositorioArticulos repositorio = new RepositorioArticulos();
 
-        public Buscador_Articulos(List<articulo> lista_articulos_par)
+        public Buscador_Articulos(List<Articulo> lista_articulos_par)
         {
             InitializeComponent();
             
             this.articulosBs.DataSource = lista_articulos_par
                 .Select(p => new BuscadorArticulosViewModel
                 {
-                    IdArticulo = p.id,
-                    descripcionArticulo = p.Descripcion,
-                    costoSinIva = p.CostoSinIva,
-                    costoConIva = p.CostoConIva,
-                    precioFinal = p.Preciofinal,
-                    stock = p.stock,
-                    estadoProducto = p.Estado,
-                    nombreCategoria = p.categoria.Nombre
+                    IdArticulo = p.Id,
+                    DescripcionArticulo = p.Descripcion,
+                    CostoSinIva = p.CostoSinIva,
+                    CostoConIva = p.CostoConIva,
+                    PrecioFinal = p.Preciofinal,
+                    Stock = p.Stock,
+                    EstadoProducto = p.Estado,
+                    NombreCategoria = p.Categoria.Nombre
 
                 });
         }

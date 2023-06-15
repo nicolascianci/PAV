@@ -9,9 +9,9 @@ namespace Interfaces
 {
     public interface IABMArticulos
     {
-        event EventHandler<articulo> AgregarProductoAceptar;
-        event EventHandler<articulo> EditarProductoAceptar;
-        event EventHandler<articulo> EliminarProductoAceptar;
-        void Modificar(articulo articulo_par);
+        event EventHandler<Articulo> AgregarProductoAceptar;
+        event EventHandler<Articulo> EditarProductoAceptar;
+        event EventHandler<Articulo> EliminarProductoAceptar;
+        void Modificar(Articulo articuloPar);
     }
 }

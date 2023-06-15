@@ -14,15 +14,15 @@ using System.Windows.Forms;
 
 namespace Sistema.Formularios
 {
-    public partial class Ventas_Consultas : Form, IConsulta_Ventas
+    public partial class Ventas_Consultas : Form, IConsultaVentas
     {
 
-        Presentador_Ventas_Consultas _presentador;
+        PresentadorVentasConsultas _presentador;
 
         public Ventas_Consultas()
         {
             InitializeComponent();
-            _presentador = new Presentador_Ventas_Consultas(this);
+            _presentador = new PresentadorVentasConsultas(this);
         }
 
         #region IConsulta_Ventas
@@ -48,26 +48,26 @@ namespace Sistema.Formularios
                     return Convert.ToDateTime(this.Hasta_ctrl.Text + " 23:59:59");
             }
         }
-        public List<ConsultaVentasViewModel> lista_ventas
+        public List<ConsultaVentasViewModel> ListaVentas
         {
             get => (List<ConsultaVentasViewModel>)consultaVentasViewModelBindingSource.DataSource;
             set => consultaVentasViewModelBindingSource.DataSource = value;
         }
 
-        public int idventa
+        public int IdVenta
         {
             get
             {
                 if (this.ventas_grilla.CurrentRow != null)
                 {
                     var datos = (ConsultaVentasViewModel)this.ventas_grilla.CurrentRow.DataBoundItem;
-                    return Convert.ToInt32(datos.numeroVenta);
+                    return Convert.ToInt32(datos.NumeroVenta);
                 }
                 return 0;
             }
         }
 
-        decimal IConsulta_Ventas.total { set => this.total_txt.Text = value.ToString(); }
+        decimal IConsultaVentas.Total { set => this.total_txt.Text = value.ToString(); }
 
         #endregion
 
@@ -96,9 +96,9 @@ namespace Sistema.Formularios
 
         private void ventas_grilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(this.idventa != 0)
+            if(this.IdVenta != 0)
             {
-                Ventas _from = new Ventas(idventa);// para ver el detalle de la operacion
+                Ventas _from = new Ventas(IdVenta);// para ver el detalle de la operacion
                 _from.ShowDialog();
             }
                 

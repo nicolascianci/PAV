@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
-    public interface IGestion_Producto
+    public interface IGestionProducto
     {
-        string nombre_articulo { get; }
+        string NombreArticulo { get; }
         void ActualizarLista();
     }
 }

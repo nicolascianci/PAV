@@ -153,7 +153,7 @@ namespace Sistema
             // 
             // BS_Categoria
             // 
-            this.BS_Categoria.DataSource = typeof(Dominio.categoria);
+            this.BS_Categoria.DataSource = typeof(Dominio.Categoria);
             // 
             // Gestion_Categorias
             // 

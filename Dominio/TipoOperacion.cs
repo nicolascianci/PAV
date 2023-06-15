@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public enum Tipo_Operacion
+    public enum TipoOperacion
     {
         Venta = 1,
         Compra

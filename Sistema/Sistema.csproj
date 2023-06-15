@@ -67,11 +67,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\ABM_Articulos.cs">
+    <Compile Include="Formularios\ABMArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\ABM_Articulos.Designer.cs">
-      <DependentUpon>ABM_Articulos.cs</DependentUpon>
+    <Compile Include="Formularios\ABMArticulos.Designer.cs">
+      <DependentUpon>ABMArticulos.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\ABM_Categoria.cs">
       <SubType>Form</SubType>
@@ -111,18 +111,18 @@
     </Compile>
     <Compile Include="Interfaces\IABMArticulos.cs" />
     <Compile Include="Interfaces\IABMCatagorias.cs" />
-    <Compile Include="Interfaces\IConsulta_Ventas.cs" />
-    <Compile Include="Interfaces\IGestion_Categorias.cs" />
-    <Compile Include="Interfaces\IGestion_Producto.cs" />
+    <Compile Include="Interfaces\IConsultaVentas.cs" />
+    <Compile Include="Interfaces\IGestionCategorias.cs" />
+    <Compile Include="Interfaces\IGestionProducto.cs" />
     <Compile Include="Interfaces\IOperacion.cs" />
     <Compile Include="Presentadores\PresentadorABMArticulos.cs" />
-    <Compile Include="Presentadores\PresentadorABM_Categoria.cs" />
-    <Compile Include="Presentadores\PresentadorBuscardor_Articulos.cs" />
-    <Compile Include="Presentadores\PresentadorGestion_Articulos.cs" />
-    <Compile Include="Presentadores\PresentadorGestion_Categorias.cs" />
+    <Compile Include="Presentadores\PresentadorABMCategoria.cs" />
+    <Compile Include="Presentadores\PresentadorBuscardorArticulos.cs" />
+    <Compile Include="Presentadores\PresentadorGestionArticulos.cs" />
+    <Compile Include="Presentadores\PresentadorGestionCategorias.cs" />
     <Compile Include="Presentadores\PresentadorVentas.cs" />
-    <Compile Include="Presentadores\Presentador_Inicio.cs" />
-    <Compile Include="Presentadores\Presentador_Ventas_Consultas.cs" />
+    <Compile Include="Presentadores\PresentadorInicio.cs" />
+    <Compile Include="Presentadores\PresentadorVentasConsultas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BuscadorArticulosViewModel.cs" />
@@ -133,8 +133,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\ABM_Articulos.resx">
-      <DependentUpon>ABM_Articulos.cs</DependentUpon>
+    <EmbeddedResource Include="Formularios\ABMArticulos.resx">
+      <DependentUpon>ABMArticulos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ABM_Categoria.resx">
       <DependentUpon>ABM_Categoria.cs</DependentUpon>

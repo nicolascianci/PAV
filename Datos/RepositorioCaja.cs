@@ -8,17 +8,17 @@ using System.Windows.Forms;
 
 namespace Datos
 {
-    public class R_Caja
+    public class RepositorioCaja
     {
         private Modelo _repositorio;
         private Caja _caja;
 
-        public R_Caja()
+        public RepositorioCaja()
         {
             _repositorio = new Modelo();
         }
 
-        public void Abrir_Caja()
+        public void AbrirCaja()
         {
             if(!_repositorio.Cajas.Any(x => x.FechaCierre == null))
             {

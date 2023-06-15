@@ -199,14 +199,22 @@
     <Compile Include="Migrations\202306052236303_nuevos_cambios.designer.cs">
       <DependentUpon>202306052236303_nuevos_cambios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306150107323_cambio de entidad.cs" />
+    <Compile Include="Migrations\202306150107323_cambio de entidad.designer.cs">
+      <DependentUpon>202306150107323_cambio de entidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306150121195_entidad Categoria.cs" />
+    <Compile Include="Migrations\202306150121195_entidad Categoria.designer.cs">
+      <DependentUpon>202306150121195_entidad Categoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="R_ABMArticulos.cs" />
-    <Compile Include="R_ABMCategorias.cs" />
-    <Compile Include="R_Articulos.cs" />
-    <Compile Include="R_Caja.cs" />
-    <Compile Include="R_Ventas.cs" />
+    <Compile Include="RepositorioABMArticulos.cs" />
+    <Compile Include="RepositorioABMCategorias.cs" />
+    <Compile Include="RepositorioArticulos.cs" />
+    <Compile Include="RepositorioCaja.cs" />
+    <Compile Include="RepositorioVentas.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -233,6 +241,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306052236303_nuevos_cambios.resx">
       <DependentUpon>202306052236303_nuevos_cambios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306150107323_cambio de entidad.resx">
+      <DependentUpon>202306150107323_cambio de entidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306150121195_entidad Categoria.resx">
+      <DependentUpon>202306150121195_entidad Categoria.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

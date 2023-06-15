@@ -35,19 +35,22 @@ namespace Datos
             modelBuilder.Entity<Operacion>()
                 .HasKey(x => x.ID_Operacion);
 
-            modelBuilder.Entity<articulo>()
-                .HasKey(x => x.id);
+            modelBuilder.Entity<Articulo>()
+                .HasKey(x => x.Id);
 
             modelBuilder.Entity<Caja>()
-                .HasKey(x => x.idcaja);
+                .HasKey(x => x.IdCaja);
+
+            modelBuilder.Entity<Categoria>()
+                .HasKey(x => x.Id);
 
 
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<articulo> articulos { get; set; }
+        public DbSet<Articulo> articulos { get; set; }
 
-       public DbSet<categoria> categorias { get; set; }
+       public DbSet<Categoria> Categorias { get; set; }
 
         public DbSet<Operacion> operaciones { get; set; }
 

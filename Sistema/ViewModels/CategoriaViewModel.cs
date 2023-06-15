@@ -8,7 +8,7 @@ namespace Dominio.ViewModels
 {
     public class CategoriaViewModel
     {
-        public int idCategoria { get; set; }
-        public string nombreCategoria { get; set; }
+        public int IdCategoria { get; set; }
+        public string NombreCategoria { get; set; }
     }
 }
