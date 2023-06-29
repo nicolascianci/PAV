@@ -29,20 +29,22 @@ namespace Presentadores
 
         public void AgregarProducto(object sender, Articulo p)
         {
-            _repositorio.AgregarProducto(p);
+            if(ValidarArticulo(p))
+                _repositorio.AgregarProducto(p);
         }
 
         public void EditarProducto(object sender, Articulo p)
         {
-            _repositorio.EditarProducto(p);
+            if(ValidarArticulo(p))
+                _repositorio.EditarProducto(p);
         }
 
         public void EliminarProducto(object sender, Articulo p)
-        {
-            _repositorio.EliminarProducto(p);
+        {            
+             _repositorio.EliminarProducto(p);
         }
 
-        public List<CategoriaViewModel> Buscar_Categorias()
+        public List<CategoriaViewModel> BuscarCategorias()
         {
             _lista_categorias = _repositorio.BuscarTodasCategorias().Select(x => new CategoriaViewModel
             {
@@ -53,9 +55,19 @@ namespace Presentadores
             return _lista_categorias;
         }
 
-        public Categoria Devolver_Categoria(int idcategoria)
+        public Categoria DevolverCategoria(int idcategoria)
         {
             return _repositorio.GetCategoria(idcategoria);
+        }
+
+        private bool ValidarArticulo(Articulo articulo)
+        {
+            return _repositorio.ValidarArticulo(articulo);
+        }
+
+        public CategoriaViewModel SeleccionarCategoria(int idcategoria)
+        {
+            return _lista_categorias.Where(p => p.IdCategoria == idcategoria).First();
         }
     }
 }

@@ -48,7 +48,7 @@ namespace Datos
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Articulo> articulos { get; set; }
+        public DbSet<Articulo> Articulos { get; set; }
 
        public DbSet<Categoria> Categorias { get; set; }
 

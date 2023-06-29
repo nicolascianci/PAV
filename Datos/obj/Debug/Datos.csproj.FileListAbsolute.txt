@@ -763,15 +763,9 @@ C:\Users\PC\Desktop\El Pastelero\PAV\Datos\bin\Debug\ru\Microsoft.Data.SqlClient
 C:\Users\PC\Desktop\El Pastelero\PAV\Datos\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\PC\Desktop\El Pastelero\PAV\Datos\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.csprojAssemblyReference.cache
-C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.Migrations.avance.resources
-C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.Migrations.avance2.resources
-C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.Migrations.descuento_precio_sin_descuento.resources
-C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.Migrations.caja.resources
-C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.csproj.GenerateResource.cache
 C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
 C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.csproj.CopyComplete
 C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.dll
 C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.pdb
-C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.Migrations.nuevos_cambios.resources
-C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.Migrations.cambiodeentidad.resources
-C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.Migrations.entidadCategoria.resources
+C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.Migrations.primeros_cambios.resources
+C:\Users\PC\Desktop\El Pastelero\PAV\Datos\obj\Debug\Datos.csproj.GenerateResource.cache

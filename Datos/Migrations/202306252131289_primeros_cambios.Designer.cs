@@ -7,13 +7,13 @@ namespace Datos.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class avance : IMigrationMetadata
+    public sealed partial class primeros_cambios : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(avance));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(primeros_cambios));
         
         string IMigrationMetadata.Id
         {
-            get { return "202109192147242_avance"; }
+            get { return "202306252131289_primeros_cambios"; }
         }
         
         string IMigrationMetadata.Source

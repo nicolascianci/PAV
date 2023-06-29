@@ -82,6 +82,7 @@ namespace Sistema.Formularios
             this.Controls.Add(this.nombre_categoria_ctrl);
             this.Controls.Add(this.label1);
             this.Name = "ABM_Categoria";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABM_Categoria";
             ((System.ComponentModel.ISupportInitialize)(this.BS_Categoria)).EndInit();
             this.ResumeLayout(false);

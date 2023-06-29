@@ -26,17 +26,21 @@ namespace Presentadores
 
         public void AgregarCategoria(object sender, Categoria c)
         {
-            _repositorio.AgregarCategoria(c);
+            if (_repositorio.ValidarCategoria(c))
+                 _repositorio.AgregarCategoria(c);
         }
 
         public void EditarCategoria(object sender, Categoria c)
         {
-            _repositorio.ModificarCategoria(c);
+            if(_repositorio.ValidarCategoria(c))
+                _repositorio.ModificarCategoria(c);
         }
 
         public void EliminarCategoria(object sender, Categoria c)
         {
             _repositorio.EliminarCategoria(c);
         }
+
+
     }
 }

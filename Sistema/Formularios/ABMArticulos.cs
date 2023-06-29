@@ -27,7 +27,7 @@ namespace Sistema.Formularios
             _presentador = new PresentadorABMArticulos(this);
             articulosbd.DataSource = _articulos;
             comboBox1.DataSource = Enum.GetValues(typeof(EstadoProducto));
-            categoriaViewModelBindingSource.DataSource = _presentador.Buscar_Categorias();
+            categoriaViewModelBindingSource.DataSource = _presentador.BuscarCategorias();
             comboBox2.DataSource = categoriaViewModelBindingSource.DataSource;
             categoriaViewModelBindingSource.Position = 0;
             
@@ -41,9 +41,10 @@ namespace Sistema.Formularios
 
         public void ActualizarProducto(Articulo p)
         {
+            
             _articulos = p;
-            articulosbd.DataSource = _articulos;
-            categoriaViewModelBindingSource.Position = (int)p.CategoriaId - 1;
+            articulosbd.DataSource = _articulos;            
+            comboBox2.SelectedItem = _presentador.SeleccionarCategoria(p.Categoria.Id); ;
         }
 
 
@@ -77,34 +78,47 @@ namespace Sistema.Formularios
         public void Modificar(Articulo articuloPar)
         {
             articulosbd.DataSource = articuloPar;
-            categoriaViewModelBindingSource.Position = (int)articuloPar.CategoriaId - 1;
+            comboBox2.SelectedItem = _presentador.SeleccionarCategoria(articuloPar.Categoria.Id);
         }
 
         private void btn_guardar_Click_1(object sender, EventArgs e)
         {
-            if (_nuevo)
+            try
             {
+                bool _cerra = false;
 
-                var resultado = MessageBox.Show("¿Deseas crear el Crear Producto?", "Producto", MessageBoxButtons.OKCancel);
-                if (resultado == DialogResult.OK)
+                if (_nuevo)
                 {
-                    _categoria = (CategoriaViewModel)categoriaViewModelBindingSource.Current;
+
+                    var resultado = MessageBox.Show("¿Deseas crear el Crear Producto?", "Producto", MessageBoxButtons.OKCancel);
+                    if (resultado == DialogResult.OK)
+                    {
+                        //_categoria = (CategoriaViewModel)categoriaViewModelBindingSource.Current;
+                        _categoria = (CategoriaViewModel)comboBox2.SelectedItem;
+                        _articulos.CategoriaId = Convert.ToInt32(_categoria.IdCategoria);
+                        _articulos.Categoria = _presentador.DevolverCategoria(_categoria.IdCategoria);
+                        OnAgregarProductoAceptar(_articulos);
+                        _cerra = true;
+
+                    }
+                }
+                else
+                {
+                    _categoria = (CategoriaViewModel)comboBox2.SelectedItem;
                     _articulos.CategoriaId = Convert.ToInt32(_categoria.IdCategoria);
-                    _articulos.Categoria = _presentador.Devolver_Categoria(_categoria.IdCategoria);
-                    OnAgregarProductoAceptar(_articulos);
+                    _articulos.Categoria = _presentador.DevolverCategoria(_categoria.IdCategoria);
+                    OnEditarProductoAceptar(_articulos);
+                    _cerra = true;
 
                 }
+
+                if(_cerra)
+                    this.Dispose();
             }
-            else
+            catch (Exception ex)
             {
-                _categoria = (CategoriaViewModel)categoriaViewModelBindingSource.Current;
-                _articulos.CategoriaId = Convert.ToInt32(_categoria.IdCategoria);
-                _articulos.Categoria = _presentador.Devolver_Categoria(_categoria.IdCategoria);
-                OnEditarProductoAceptar(_articulos);
-
+                MessageBox.Show("No se pudo realizar la operacion debido a un error. " + ex.Message, "Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            this.Dispose();
         }
     }
 }

@@ -18,14 +18,14 @@ namespace Datos
 
         public Articulo Uno(int idArticuloPar)
         {
-            return _repositorio.articulos.Where(x => x.Id == idArticuloPar).FirstOrDefault();
+            return _repositorio.Articulos.Where(x => x.Id == idArticuloPar).FirstOrDefault();
         }
 
         public List<Articulo> BuscarArticulos(string nombreArticuloPar)
         {
             List<Articulo> Lista = new List<Articulo>();
 
-            Lista = _repositorio.articulos.Where(x => x.Descripcion.Contains(nombreArticuloPar) && x.Febaj == null).ToList();
+            Lista = _repositorio.Articulos.Where(x => x.Descripcion.Contains(nombreArticuloPar) && x.Febaj == null).ToList();
 
             return Lista;
 
@@ -33,7 +33,7 @@ namespace Datos
 
         public void ActualizarStock(int idArticuloPar, decimal stockDescontarPar)
         {
-            Articulo articulo = (from a in _repositorio.articulos
+            Articulo articulo = (from a in _repositorio.Articulos
                                   where a.Id == idArticuloPar
                                   && a.Febaj == null
                                   select a).FirstOrDefault();

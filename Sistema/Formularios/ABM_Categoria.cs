@@ -31,9 +31,9 @@ namespace Sistema.Formularios
         public event EventHandler<Categoria> EditarCategoriaAceptar;
         public event EventHandler<Categoria> EliminarCategoriaAceptar;
 
-        public void Modificar(Categoria categoria_par)
+        public void Modificar(Categoria categoriaPar)
         {
-            _categoria = categoria_par;
+            _categoria = categoriaPar;
             BS_Categoria.DataSource = _categoria;
         }
 
@@ -64,21 +64,28 @@ namespace Sistema.Formularios
 
         private void guardar_btn_Click(object sender, EventArgs e)
         {
-            if(_nuevo)
+            try
             {
-                var resultado = MessageBox.Show("¿Deseas crear la Categoria?", "Categoria", MessageBoxButtons.OKCancel);
-                if (resultado == DialogResult.OK)
+                if (_nuevo)
                 {
-                    OnAgregarCategoria(_categoria);
-                }
-                
-            }
-            else
-            {
-                OnEditarCategiaAceptar(_categoria);
-            }
+                    var resultado = MessageBox.Show("¿Deseas crear la Categoria?", "Categoria", MessageBoxButtons.OKCancel);
+                    if (resultado == DialogResult.OK)
+                    {
+                        OnAgregarCategoria(_categoria);
+                    }
 
-            this.Dispose();
+                }
+                else
+                {
+                    OnEditarCategiaAceptar(_categoria);
+                }
+
+                this.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se puedo realizar la operacion debido a un error. " + ex.Message, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

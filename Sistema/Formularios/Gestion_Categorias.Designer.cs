@@ -39,8 +39,8 @@ namespace Sistema
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.Categorias_DG = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idCategoriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreCategoriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BS_Categoria = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Categorias_DG)).BeginInit();
@@ -125,8 +125,8 @@ namespace Sistema
             this.Categorias_DG.AutoGenerateColumns = false;
             this.Categorias_DG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Categorias_DG.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.nombreDataGridViewTextBoxColumn});
+            this.idCategoriaDataGridViewTextBoxColumn,
+            this.nombreCategoriaDataGridViewTextBoxColumn});
             this.Categorias_DG.DataSource = this.BS_Categoria;
             this.Categorias_DG.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Categorias_DG.Location = new System.Drawing.Point(0, 62);
@@ -136,24 +136,24 @@ namespace Sistema
             this.Categorias_DG.TabIndex = 2;
             this.Categorias_DG.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
-            // idDataGridViewTextBoxColumn
+            // idCategoriaDataGridViewTextBoxColumn
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idCategoriaDataGridViewTextBoxColumn.DataPropertyName = "IdCategoria";
+            this.idCategoriaDataGridViewTextBoxColumn.HeaderText = "IdCategoria";
+            this.idCategoriaDataGridViewTextBoxColumn.Name = "idCategoriaDataGridViewTextBoxColumn";
+            this.idCategoriaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // nombreDataGridViewTextBoxColumn
+            // nombreCategoriaDataGridViewTextBoxColumn
             // 
-            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nombreCategoriaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreCategoriaDataGridViewTextBoxColumn.DataPropertyName = "NombreCategoria";
+            this.nombreCategoriaDataGridViewTextBoxColumn.HeaderText = "NombreCategoria";
+            this.nombreCategoriaDataGridViewTextBoxColumn.Name = "nombreCategoriaDataGridViewTextBoxColumn";
+            this.nombreCategoriaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // BS_Categoria
             // 
-            this.BS_Categoria.DataSource = typeof(Dominio.Categoria);
+            this.BS_Categoria.DataSource = typeof(Dominio.ViewModels.CategoriaViewModel);
             // 
             // Gestion_Categorias
             // 
@@ -164,6 +164,7 @@ namespace Sistema
             this.Controls.Add(this.nombre_categoria_ctrl);
             this.Controls.Add(this.toolStrip1);
             this.Name = "Gestion_Categorias";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion_Categorias";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -185,7 +186,8 @@ namespace Sistema
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.DataGridView Categorias_DG;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idCategoriaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreCategoriaDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource BS_Categoria;
     }
 }

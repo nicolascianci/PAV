@@ -179,33 +179,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202109192147242_avance.cs" />
-    <Compile Include="Migrations\202109192147242_avance.designer.cs">
-      <DependentUpon>202109192147242_avance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202109230114452_avance2.cs" />
-    <Compile Include="Migrations\202109230114452_avance2.designer.cs">
-      <DependentUpon>202109230114452_avance2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110200125190_descuento_precio_sin_descuento.cs" />
-    <Compile Include="Migrations\202110200125190_descuento_precio_sin_descuento.designer.cs">
-      <DependentUpon>202110200125190_descuento_precio_sin_descuento.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110220031457_caja.cs" />
-    <Compile Include="Migrations\202110220031457_caja.designer.cs">
-      <DependentUpon>202110220031457_caja.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306052236303_nuevos_cambios.cs" />
-    <Compile Include="Migrations\202306052236303_nuevos_cambios.designer.cs">
-      <DependentUpon>202306052236303_nuevos_cambios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306150107323_cambio de entidad.cs" />
-    <Compile Include="Migrations\202306150107323_cambio de entidad.designer.cs">
-      <DependentUpon>202306150107323_cambio de entidad.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306150121195_entidad Categoria.cs" />
-    <Compile Include="Migrations\202306150121195_entidad Categoria.designer.cs">
-      <DependentUpon>202306150121195_entidad Categoria.cs</DependentUpon>
+    <Compile Include="Migrations\202306252131289_primeros_cambios.cs" />
+    <Compile Include="Migrations\202306252131289_primeros_cambios.designer.cs">
+      <DependentUpon>202306252131289_primeros_cambios.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modelo.cs" />
@@ -227,26 +203,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202109192147242_avance.resx">
-      <DependentUpon>202109192147242_avance.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202109230114452_avance2.resx">
-      <DependentUpon>202109230114452_avance2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110200125190_descuento_precio_sin_descuento.resx">
-      <DependentUpon>202110200125190_descuento_precio_sin_descuento.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110220031457_caja.resx">
-      <DependentUpon>202110220031457_caja.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306052236303_nuevos_cambios.resx">
-      <DependentUpon>202306052236303_nuevos_cambios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306150107323_cambio de entidad.resx">
-      <DependentUpon>202306150107323_cambio de entidad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306150121195_entidad Categoria.resx">
-      <DependentUpon>202306150121195_entidad Categoria.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306252131289_primeros_cambios.resx">
+      <DependentUpon>202306252131289_primeros_cambios.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

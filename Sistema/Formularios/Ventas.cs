@@ -82,9 +82,13 @@ namespace Sistema.Formularios
                         _articulo = null;
                         _articulo = (Articulo)_form.Tag;
 
-                        this.articulo_lb.Text = _articulo.Descripcion;
-                        this.panel2.Visible = true;
-                        this.cantidad_txb.Focus();
+                        if(_articulo != null)
+                        {
+                            this.articulo_lb.Text = _articulo.Descripcion;
+                            this.panel2.Visible = true;
+                            this.cantidad_txb.Focus();
+                        }
+                        
 
                     }
                     else

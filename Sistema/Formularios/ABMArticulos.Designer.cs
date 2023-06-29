@@ -257,7 +257,7 @@ namespace Sistema.Formularios
             // 
             this.categoriaViewModelBindingSource.DataSource = typeof(Dominio.ViewModels.CategoriaViewModel);
             // 
-            // ABM_Articulos
+            // ABMArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -283,7 +283,8 @@ namespace Sistema.Formularios
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txt_codigo);
             this.Controls.Add(this.label1);
-            this.Name = "ABM_Articulos";
+            this.Name = "ABMArticulos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABM_Articulos";
             ((System.ComponentModel.ISupportInitialize)(this.articulosbd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriaViewModelBindingSource)).EndInit();
