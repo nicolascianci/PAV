@@ -26,13 +26,14 @@ namespace Presentadores
 
         public void AgregarCategoria(object sender, Categoria c)
         {
-            if (_repositorio.ValidarCategoria(c))
-                 _repositorio.AgregarCategoria(c);
+            if(this.ValidarCategoria(c.Nombre))
+                _repositorio.AgregarCategoria(c);
+
         }
 
         public void EditarCategoria(object sender, Categoria c)
         {
-            if(_repositorio.ValidarCategoria(c))
+            if (this.ValidarCategoria(c.Nombre))
                 _repositorio.ModificarCategoria(c);
         }
 
@@ -41,6 +42,18 @@ namespace Presentadores
             _repositorio.EliminarCategoria(c);
         }
 
+        private bool ValidarCategoria(string nombreCategoria)
+        {
+            Categoria _categoria = _repositorio.BuscarCategoria(nombreCategoria);
+
+            if (_categoria != null)
+            {
+                System.Windows.Forms.MessageBox.Show("Existe una Categoria con ese nombre.", "Validar Categoria", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
 
     }
 }

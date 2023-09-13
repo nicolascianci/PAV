@@ -25,7 +25,6 @@ namespace Sistema.Formularios
             InitializeComponent();
             _presentador = new PresentadorVentas(this);
             Total_ctrl.Text = string.Format("{0:#,##0.00}", double.Parse(descuento_txb.Text));
-            //cantidad_txb.Text = string.Format("{0:#,##0.00}", double.Parse(cantidad_txb.Text));
             total_descuento_txb.Text = string.Format("{0:#,##0.00}", double.Parse(descuento_txb.Text));
         }
 
@@ -34,8 +33,6 @@ namespace Sistema.Formularios
             InitializeComponent();
             _presentador = new PresentadorVentas(this,idventa_par);
             Total_ctrl.Text = string.Format("{0:#,##0.00}", double.Parse(Total_ctrl.Text));
-            //cantidad_txb.Text = string.Format("{0:#,##0.00}", double.Parse(cantidad_txb.Text));
-            //descuento_txb.Text = string.Format("P", double.Parse(descuento_txb.Text));
             total_descuento_txb.Text = string.Format("{0:#,##0.00}", double.Parse(total_descuento_txb.Text));
             this.Confirmar_btn.Enabled = false;
             this.articulos_txt.Enabled = false;
@@ -45,7 +42,10 @@ namespace Sistema.Formularios
         {
             get
             {
-                return (List<OperacionViewModel>)this.operacionViewModelBindingSource.DataSource;
+                if (this.operacionViewModelBindingSource.Count > 0)
+                    return (List<OperacionViewModel>)this.operacionViewModelBindingSource.DataSource;
+                else
+                    return null;
             }
             set
             {
@@ -156,10 +156,8 @@ namespace Sistema.Formularios
 
         private void Confirmar_btn_Click(object sender, EventArgs e)
         {
-            OnRealizarOperacion(this.ListaArticulos);
-            //this.presentador_tmp.Realizar_Operacion();
-            MessageBox.Show("Se realizo con exito la venta.", "Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this._presentador.LimpiarFormulario();
+            OnRealizarOperacion(this.ListaArticulos);           
+           
         }
 
         protected virtual void OnRealizarOperacion(List<OperacionViewModel> lista_par)

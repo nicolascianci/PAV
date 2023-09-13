@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
-
+using System.Windows.Forms;
 
 namespace Presentadores
 {
@@ -65,30 +65,35 @@ namespace Presentadores
 
         private void VistaRealizarOperacion(object sender, List<OperacionViewModel> e)
         {
-            using (TransactionScope scope = new TransactionScope())
+            if(this.ValidarOperacion(e))
             {
-                _operacion.PuntoVenta = 1;
-                _operacion.NumeroVenta = _negocioVentas.ObtenerNumero();
-                _operacion.TotalSinDescuento = this._vista.TotalSinDescuento;
-                _operacion.Descuento = this._vista.Descuento;
-                _operacion.Total = this._vista.TotalConDescuento;
-                _operacion.OperacionDetalle = new List<Detalle>();
-
-                foreach (var Item in e)
+                using (TransactionScope scope = new TransactionScope())
                 {
-                    Detalle _detalle = new Detalle();
-                    _detalle.ArticuloID = Convert.ToInt32(Item.IdArticulo);
-                    //_detalle.articulo = negocio_articulo_tmp.Uno(Convert.ToInt32(item_tmp.codigo));
-                    _detalle.Cantidad = Convert.ToDecimal(Item.Cantidad);
-                    _detalle.PrecioUnitario = Convert.ToDouble(Item.PrecioUnitario);
+                    _operacion.PuntoVenta = 1;
+                    _operacion.NumeroVenta = _negocioVentas.ObtenerNumero();
+                    _operacion.TotalSinDescuento = this._vista.TotalSinDescuento;
+                    _operacion.Descuento = this._vista.Descuento;
+                    _operacion.Total = this._vista.TotalConDescuento;
+                    _operacion.OperacionDetalle = new List<Detalle>();
 
-                    _operacion.OperacionDetalle.Add(_detalle);
-                    this._negocioArticulo.ActualizarStock(_detalle.ArticuloID, _detalle.Cantidad);
+                    foreach (var Item in e)
+                    {
+                        Detalle _detalle = new Detalle();
+                        _detalle.ArticuloID = Convert.ToInt32(Item.IdArticulo);
+                        _detalle.Cantidad = Convert.ToDecimal(Item.Cantidad);
+                        _detalle.PrecioUnitario = Convert.ToDouble(Item.PrecioUnitario);
+
+                        _operacion.OperacionDetalle.Add(_detalle);
+                        this._negocioArticulo.ActualizarStock(_detalle.ArticuloID, _detalle.Cantidad);
+                    }
+
+                    _negocioVentas.GuardarVenta(_operacion);
+
+                    scope.Complete();
                 }
 
-                _negocioVentas.GuardarVenta(_operacion);
-
-                scope.Complete();                
+                MessageBox.Show("Se realizo con exito la venta.", "Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.LimpiarFormulario();
             }
 
         }
@@ -169,9 +174,19 @@ namespace Presentadores
             this._vista.Descuento = 0;
             this._vista.NombreArticulo = "";
             this._vista.TotalConDescuento = 0;
-            this._vista.TotalSinDescuento = 0;
-            
+            this._vista.TotalSinDescuento = 0;           
 
+        }
+
+        private bool ValidarOperacion(List<OperacionViewModel> detalle)
+        {
+            if(detalle == null || detalle.Count <= 0)
+            {
+                MessageBox.Show("La operacion no tiene detalle.", "Validar Operacion", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
         }
     }
 }

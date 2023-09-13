@@ -21,6 +21,8 @@ namespace Sistema.Formularios
         private PresentadorABMArticulos _presentador;
         public bool _nuevo;
 
+        public Articulo articulo { get => _articulos; set => _articulos = value; }
+
         public ABMArticulos()
         {
             InitializeComponent();
@@ -95,8 +97,9 @@ namespace Sistema.Formularios
                     {
                         //_categoria = (CategoriaViewModel)categoriaViewModelBindingSource.Current;
                         _categoria = (CategoriaViewModel)comboBox2.SelectedItem;
-                        _articulos.CategoriaId = Convert.ToInt32(_categoria.IdCategoria);
-                        _articulos.Categoria = _presentador.DevolverCategoria(_categoria.IdCategoria);
+                        _presentador.DevolverCategoria(_categoria.IdCategoria);
+                        //_articulos.CategoriaId = Convert.ToInt32(_categoria.IdCategoria);
+                        //_articulos.Categoria = _presentador.DevolverCategoria(_categoria.IdCategoria);
                         OnAgregarProductoAceptar(_articulos);
                         _cerra = true;
 
@@ -105,8 +108,9 @@ namespace Sistema.Formularios
                 else
                 {
                     _categoria = (CategoriaViewModel)comboBox2.SelectedItem;
-                    _articulos.CategoriaId = Convert.ToInt32(_categoria.IdCategoria);
-                    _articulos.Categoria = _presentador.DevolverCategoria(_categoria.IdCategoria);
+                    //_articulos.CategoriaId = Convert.ToInt32(_categoria.IdCategoria);
+                    //_articulos.Categoria = _presentador.DevolverCategoria(_categoria.IdCategoria);
+                    _presentador.DevolverCategoria(_categoria.IdCategoria);
                     OnEditarProductoAceptar(_articulos);
                     _cerra = true;
 

@@ -64,17 +64,9 @@ namespace Datos
             return query;
         }
 
-        public bool ValidarCategoria(Categoria categoria)
+        public Categoria BuscarCategoria(string nombreCategoria)
         {
-            Categoria _categoria = _repositorio.Categorias.Where(p => p.Nombre == categoria.Nombre).FirstOrDefault();
-
-            if(_categoria != null)
-            {
-                System.Windows.Forms.MessageBox.Show("Existe una Categoria con ese nombre.", "Validar Categoria", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-                return false;
-            }
-
-            return true;
+            return _repositorio.Categorias.Where(p => p.Nombre == nombreCategoria).FirstOrDefault();
         }
     }
 }
