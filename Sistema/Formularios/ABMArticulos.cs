@@ -95,11 +95,9 @@ namespace Sistema.Formularios
                     var resultado = MessageBox.Show("¿Deseas crear el Crear Producto?", "Producto", MessageBoxButtons.OKCancel);
                     if (resultado == DialogResult.OK)
                     {
-                        //_categoria = (CategoriaViewModel)categoriaViewModelBindingSource.Current;
+                        
                         _categoria = (CategoriaViewModel)comboBox2.SelectedItem;
-                        _presentador.DevolverCategoria(_categoria.IdCategoria);
-                        //_articulos.CategoriaId = Convert.ToInt32(_categoria.IdCategoria);
-                        //_articulos.Categoria = _presentador.DevolverCategoria(_categoria.IdCategoria);
+                        _presentador.DevolverCategoria(_categoria.IdCategoria);                        
                         OnAgregarProductoAceptar(_articulos);
                         _cerra = true;
 
@@ -107,9 +105,7 @@ namespace Sistema.Formularios
                 }
                 else
                 {
-                    _categoria = (CategoriaViewModel)comboBox2.SelectedItem;
-                    //_articulos.CategoriaId = Convert.ToInt32(_categoria.IdCategoria);
-                    //_articulos.Categoria = _presentador.DevolverCategoria(_categoria.IdCategoria);
+                    _categoria = (CategoriaViewModel)comboBox2.SelectedItem;                    
                     _presentador.DevolverCategoria(_categoria.IdCategoria);
                     OnEditarProductoAceptar(_articulos);
                     _cerra = true;

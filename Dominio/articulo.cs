@@ -43,6 +43,48 @@ namespace Dominio
 
         public decimal Stock { get; set; }
 
+        public bool ValidarArticulo(out string mensaje)
+        {
+            if(this.Codigo == null || this.Codigo == string.Empty)
+            {
+                mensaje = "No ingreso codigo para el articulo.";
+                return false;
+            }
+
+            if(this.Descripcion == null || this.Descripcion == string.Empty)
+            {
+                mensaje = "No ingreso la descripcion del articulo.";
+                return false;
+            }
+
+            if(this.CostoSinIva <= 0)
+            {
+                mensaje = "El precio de costo debe ser mayor a 0.";
+                return false;
+            }
+
+            if (this.CostoConIva <= 0)
+            {
+                mensaje = "El precio de costo debe ser mayor a 0.";
+                return false;
+            }
+
+            if (this.PorcentajeIva <= 0)
+            {
+                mensaje = "El porcentaje de IVA debe ser mayor a 0.";
+                return false;
+            }
+
+            if (this.Preciofinal <= 0)
+            {
+                mensaje = "El precio de venta debe ser mayor a 0.";
+                return false;
+            }
+
+            mensaje = "";
+            return true;
+        }
+
         //[ForeignKey ("categoria")]
         public int? CategoriaId { get; set; }
         public virtual Categoria Categoria { get; set; }

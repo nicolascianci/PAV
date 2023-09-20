@@ -30,14 +30,31 @@ namespace Presentadores
 
         public void AgregarProducto(object sender, Articulo p)
         {
-            if(ValidarArticulo(p))
+            string _mensaje;
+
+            if (ValidarArticulo(p, out _mensaje))
+            {
                 _repositorio.AgregarProducto(p);
+            }
+            else
+            {
+                MessageBox.Show(_mensaje, "Validar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         public void EditarProducto(object sender, Articulo p)
         {
-            if(ValidarArticulo(p))
-                _repositorio.EditarProducto(p);
+            string _mensaje;
+
+            if (ValidarArticulo(p, out _mensaje))
+            {
+                _repositorio.AgregarProducto(p);               
+            }
+            else
+            {
+                MessageBox.Show(_mensaje, "Validar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void EliminarProducto(object sender, Articulo p)
@@ -62,37 +79,18 @@ namespace Presentadores
             this._vista.articulo.Categoria = _repositorio.GetCategoria(idcategoria);            
         }
 
-        private bool ValidarArticulo(Articulo articulo)
+        private bool ValidarArticulo(Articulo articulo, out string mensaje)
         {
             Articulo _articulo = _repositorio.BuscarArticulo(articulo.Id);
 
             if (_articulo != null && _articulo.Id != articulo.Id)
-            {
-                MessageBox.Show("Existe otro articulo con el mismo Codigo.", "Validar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {                
+                mensaje = "Existe otro articulo con el mismo Codigo.";
                 return false;
             }
-
-            if (articulo.Descripcion == null || articulo.Descripcion == string.Empty)
+            
+            if(!articulo.ValidarArticulo(out mensaje))
             {
-                MessageBox.Show("Debe escribir la descripcion del articulo.", "Validar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (articulo.CostoSinIva <= 0)
-            {
-                MessageBox.Show("El Precio del costo debe ser mayor a 0.", "Validar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (articulo.PorcentajeIva < 0)
-            {
-                MessageBox.Show("El porcentaje de IVA debe ser positivo.", "Validar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (articulo.MargenDeGanancia <= 0)
-            {
-                MessageBox.Show("El margen de ganancia debe ser mayor a 0.", "Validar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
