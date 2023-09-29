@@ -11,6 +11,8 @@ using System.Windows.Forms;
 
 namespace Presentadores
 {
+    //TODO: No debe invocarse desde el presentador a recursos de la vista, como se corrigió
+    //en los repositorios. Revisar todos los casos (en todos los presentadores).
     public class PresentadorABMArticulos
     {
         IABMArticulos _vista;
@@ -23,6 +25,10 @@ namespace Presentadores
             _vista = vistaPar;
             _repositorio = new RepositorioABMArticulos();
 
+            //TODO: los eventos, tienen sentido? Son útiles cuando se quiere trasladar
+            //un evento generado por un control, por ejemplo: se hace click en un botón y el
+            //handler de ese evento se quiere resolver en el presentador. Ver inidicación para esto
+            //en la misma vista.
             _vista.AgregarProductoAceptar += this.AgregarProducto;
             _vista.EditarProductoAceptar += this.EditarProducto;
             _vista.EliminarProductoAceptar += this.EliminarProducto;
@@ -38,6 +44,7 @@ namespace Presentadores
             }
             else
             {
+                
                 MessageBox.Show(_mensaje, "Validar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 

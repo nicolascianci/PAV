@@ -8,6 +8,8 @@ using System.Windows.Forms;
 
 namespace Datos
 {
+    //TODO: al igual que se corrigió antes, hay responsabilidades aquí que deberían estar en la vista.
+    //Como todas las llamadas a MessageBox.
     public class RepositorioCaja
     {
         private Modelo _repositorio;
@@ -18,6 +20,10 @@ namespace Datos
             _repositorio = new Modelo();
         }
 
+        //TODO: un repositorio solo debe interactuar con el origen de datos
+        //La lógica siguiente ( crear una caja o cerrar y abrir) debería ir 
+        //en el presentador (porque no se cuenta con una capa de Aplicación
+        //de lo contrario iría ahí).
         public void AbrirCaja()
         {
             if(!_repositorio.Cajas.Any(x => x.FechaCierre == null))

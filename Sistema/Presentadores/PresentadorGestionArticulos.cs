@@ -54,6 +54,8 @@ namespace Presentadores
             
         }
 
+        //TODO: El presentador no debe conocer los formularios directamente
+        //de lo contrario no tiene mucho sentido utilizar el patrón MVP
         public void AgregarArticulo()
         {
             ABMArticulos _formulario = new ABMArticulos();

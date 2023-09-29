@@ -16,6 +16,7 @@ namespace Sistema.Formularios
 {
     public partial class ABMArticulos : Form, IABMArticulos
     {
+        //Estas son variables de clase, aquí están bien los guiones bajos.
         Articulo _articulos = new Articulo();
         CategoriaViewModel _categoria = new CategoriaViewModel();
         private PresentadorABMArticulos _presentador;
@@ -87,6 +88,8 @@ namespace Sistema.Formularios
         {
             try
             {
+                //TODO: RECUERDA: los guiones bajos (_) solo se utilizan en variables de clase
+                //NO en métodos.
                 bool _cerra = false;
 
                 if (_nuevo)
@@ -97,7 +100,17 @@ namespace Sistema.Formularios
                     {
                         
                         _categoria = (CategoriaViewModel)comboBox2.SelectedItem;
-                        _presentador.DevolverCategoria(_categoria.IdCategoria);                        
+                        _presentador.DevolverCategoria(_categoria.IdCategoria);
+                        //TODO: acá se realiza la invocación al evento, dentro del mismo handler
+                        //(para aclarar, el handler del evento click es este mismo método)
+                        //No tiene mucho sentido, ya que se podría haber realizado una llamada
+                        //al presentador directamente, como se hace en la línea anterior.
+                        //Como ejemplo: para que este manejador pueda ser resuelto en el presentador
+                        //podrías haber suplantado el evento del click con el evento de la vista,
+                        //de la siguiente manera:
+                        // public event EventHandler<Articulo> AgregarProductoAceptar
+                        // {add btn_guardar.Click += value }
+                        // {remove btn_guardar.Click -= value}
                         OnAgregarProductoAceptar(_articulos);
                         _cerra = true;
 

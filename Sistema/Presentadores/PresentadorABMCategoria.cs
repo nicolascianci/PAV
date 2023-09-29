@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace Presentadores
 {
+    //TODO: No debe invocarse desde el presentador a recursos de la vista, como se corrigió
+    //en los repositorios. Revisar todos los casos (en todos los presentadores).
     public class PresentadorABM_Categoria
     {
         IABMCatagorias _vista;

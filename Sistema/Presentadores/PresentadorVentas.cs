@@ -12,6 +12,8 @@ using System.Windows.Forms;
 
 namespace Presentadores
 {
+    //TODO: No debe invocarse desde el presentador a recursos de la vista, como se corrigió
+    //en los repositorios. Revisar todos los casos (en todos los presentadores).
     public class PresentadorVentas
     {
         IOperacion _vista;
@@ -27,6 +29,10 @@ namespace Presentadores
         public PresentadorVentas(IOperacion vistaPar)
         {
             _vista = vistaPar;
+            //TODO: La creación de la operación debería ser un proceso atómico (realizarse todo en un solo paso),
+            //mientras que en este caso está dividido, se crea acá la instacia, en el método VistaRealizarOperacion
+            //se le asignan la mayoría de los datos y en el repositorio se le termina asignando la
+            //fecha.
             _operacion = new Operacion();
             _operacion.TipoOperacion = TipoOperacion.Venta;
             _listaDetalle = new List<OperacionViewModel>();
@@ -78,6 +84,7 @@ namespace Presentadores
 
                     foreach (var Item in e)
                     {
+                        //TODO: recordar el patrón Creador, ¿quién debería crear el detalle?
                         Detalle _detalle = new Detalle();
                         _detalle.ArticuloID = Convert.ToInt32(Item.IdArticulo);
                         _detalle.Cantidad = Convert.ToDecimal(Item.Cantidad);
@@ -145,6 +152,7 @@ namespace Presentadores
             
         }
 
+        //TODO: patrón Experto, ¿quién debería conocer el total?
         public void Totales()
         {
             double _total = 0;
