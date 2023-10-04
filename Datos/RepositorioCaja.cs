@@ -24,7 +24,7 @@ namespace Datos
         //La lógica siguiente ( crear una caja o cerrar y abrir) debería ir 
         //en el presentador (porque no se cuenta con una capa de Aplicación
         //de lo contrario iría ahí).
-        public void AbrirCaja()
+        public bool AbrirCaja(out string mens)
         {
             if(!_repositorio.Cajas.Any(x => x.FechaCierre == null))
             {
@@ -33,28 +33,31 @@ namespace Datos
                 _repositorio.Cajas.Add(_caja);
                 _repositorio.SaveChanges();
 
-                MessageBox.Show("Se abrio la caja correctamente");
+                mens = "Se abrio la caja correctamente";
+                return true;
             }
             else
             {
-                DialogResult _resultado = MessageBox.Show("Hay una Caja Abierta desea Cerrarla y Abrir otra?", "Cerrar Caja", MessageBoxButtons.YesNo);
+               mens ="Hay una Caja Abierta desea Cerrarla y Abrir otra?";
 
-                if(_resultado == DialogResult.Yes)
-                {
-                    _caja = _repositorio.Cajas.Where(x => x.FechaCierre == null).FirstOrDefault();
-                    _caja.FechaCierre = DateTime.Now;
-                    _repositorio.SaveChanges();
-
-                    MessageBox.Show("Se cerro la caja correctamente");
-
-                    _caja = new Caja();
-                    _caja.FechaInicio = DateTime.Now;
-                    _repositorio.Cajas.Add(_caja);
-                    _repositorio.SaveChanges();
-
-                    MessageBox.Show("Se abrio la caja correctamente");
-                }
+                return false;
             }
+        }
+
+        public void CerrarAbrirCaja(out string mens)
+        {
+            _caja = _repositorio.Cajas.Where(x => x.FechaCierre == null).FirstOrDefault();
+            _caja.FechaCierre = DateTime.Now;
+            _repositorio.SaveChanges();
+
+            mens = "Se cerro la caja correctamente";
+
+            _caja = new Caja();
+            _caja.FechaInicio = DateTime.Now;
+            _repositorio.Cajas.Add(_caja);
+            _repositorio.SaveChanges();
+
+            mens += ". Tambien se abrio la caja correctamente nuevamente";
         }
     }
 }

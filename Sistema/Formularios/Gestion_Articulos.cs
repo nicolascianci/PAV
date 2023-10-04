@@ -38,19 +38,28 @@ namespace Sistema.Formularios
 
         private void btn_Agregar_Click(object sender, EventArgs e)
         {
-            _presentador.AgregarArticulo();
+            ABMArticulos _formulario = new ABMArticulos();
+            _formulario._nuevo = true;
+            _formulario.ShowDialog();
             this.ActualizarLista();
         }
 
         private void btn_Modificar_Click(object sender, EventArgs e)
         {
-            _presentador.EditarArticulo(_articulo.IdArticulo);
+            Articulo art = _presentador.DevolverArticulo(_articulo.IdArticulo);
+            ABMArticulos _formulario = new ABMArticulos();
+            _formulario._nuevo = false;
+            _formulario.ActualizarProducto(art);
+            _formulario.ShowDialog();
             this.ActualizarLista();
         }
 
         private void btn_Eliminar_Click(object sender, EventArgs e)
         {
-            _presentador.EliminarArticulo(_articulo.IdArticulo);
+            Articulo art = _presentador.DevolverArticulo(_articulo.IdArticulo);
+            ABMArticulos _formulario = new ABMArticulos();
+            _formulario.ActualizarProducto(art);
+            _formulario.EliminarProducto();
             this.ActualizarLista();
         }
 

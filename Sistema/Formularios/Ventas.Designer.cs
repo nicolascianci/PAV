@@ -38,13 +38,6 @@ namespace Sistema.Formularios
             this.label4 = new System.Windows.Forms.Label();
             this.articulo_lb = new System.Windows.Forms.Label();
             this.articulos_ctrl = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idArticuloDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionArticuloDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioUnitarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.operacionViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.articulos_txt = new System.Windows.Forms.TextBox();
             this.label = new System.Windows.Forms.Label();
@@ -58,6 +51,13 @@ namespace Sistema.Formularios
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idArticuloDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionArticuloDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioUnitarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.articulos_ctrl)).BeginInit();
@@ -117,10 +117,11 @@ namespace Sistema.Formularios
             // 
             this.cantidad_txb.Culture = new System.Globalization.CultureInfo("es-AR");
             this.cantidad_txb.Location = new System.Drawing.Point(177, 97);
-            this.cantidad_txb.Mask = "#.###";
+            this.cantidad_txb.Mask = "##.###";
             this.cantidad_txb.Name = "cantidad_txb";
             this.cantidad_txb.Size = new System.Drawing.Size(100, 20);
             this.cantidad_txb.TabIndex = 3;
+            this.cantidad_txb.Text = "01000";
             this.cantidad_txb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cantidad_txb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cantidad_txb_KeyDown);
             // 
@@ -167,58 +168,6 @@ namespace Sistema.Formularios
             this.articulos_ctrl.Size = new System.Drawing.Size(776, 255);
             this.articulos_ctrl.TabIndex = 0;
             this.articulos_ctrl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.articulos_ctrl_KeyDown);
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "idArticulo";
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            // 
-            // idArticuloDataGridViewTextBoxColumn
-            // 
-            this.idArticuloDataGridViewTextBoxColumn.DataPropertyName = "idArticulo";
-            this.idArticuloDataGridViewTextBoxColumn.HeaderText = "idArticulo";
-            this.idArticuloDataGridViewTextBoxColumn.Name = "idArticuloDataGridViewTextBoxColumn";
-            this.idArticuloDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idArticuloDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // descripcionArticuloDataGridViewTextBoxColumn
-            // 
-            this.descripcionArticuloDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descripcionArticuloDataGridViewTextBoxColumn.DataPropertyName = "descripcionArticulo";
-            this.descripcionArticuloDataGridViewTextBoxColumn.HeaderText = "descripcionArticulo";
-            this.descripcionArticuloDataGridViewTextBoxColumn.Name = "descripcionArticuloDataGridViewTextBoxColumn";
-            this.descripcionArticuloDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // precioUnitarioDataGridViewTextBoxColumn
-            // 
-            this.precioUnitarioDataGridViewTextBoxColumn.DataPropertyName = "precioUnitario";
-            this.precioUnitarioDataGridViewTextBoxColumn.HeaderText = "precioUnitario";
-            this.precioUnitarioDataGridViewTextBoxColumn.Name = "precioUnitarioDataGridViewTextBoxColumn";
-            this.precioUnitarioDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cantidadDataGridViewTextBoxColumn
-            // 
-            this.cantidadDataGridViewTextBoxColumn.DataPropertyName = "cantidad";
-            this.cantidadDataGridViewTextBoxColumn.HeaderText = "cantidad";
-            this.cantidadDataGridViewTextBoxColumn.Name = "cantidadDataGridViewTextBoxColumn";
-            this.cantidadDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // totalDataGridViewTextBoxColumn
-            // 
-            this.totalDataGridViewTextBoxColumn.DataPropertyName = "total";
-            this.totalDataGridViewTextBoxColumn.HeaderText = "total";
-            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
-            this.totalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // stockDataGridViewTextBoxColumn
-            // 
-            this.stockDataGridViewTextBoxColumn.DataPropertyName = "stock";
-            this.stockDataGridViewTextBoxColumn.HeaderText = "stock";
-            this.stockDataGridViewTextBoxColumn.Name = "stockDataGridViewTextBoxColumn";
-            this.stockDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // operacionViewModelBindingSource
             // 
@@ -350,6 +299,61 @@ namespace Sistema.Formularios
             this.label7.TabIndex = 12;
             this.label7.Text = "Presione  \"F2\" para ingresar el descuento";
             // 
+            // id
+            // 
+            this.id.DataPropertyName = "idArticulo";
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            // 
+            // idArticuloDataGridViewTextBoxColumn
+            // 
+            this.idArticuloDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.idArticuloDataGridViewTextBoxColumn.DataPropertyName = "IdArticulo";
+            this.idArticuloDataGridViewTextBoxColumn.HeaderText = "IdArticulo";
+            this.idArticuloDataGridViewTextBoxColumn.Name = "idArticuloDataGridViewTextBoxColumn";
+            this.idArticuloDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idArticuloDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // descripcionArticuloDataGridViewTextBoxColumn
+            // 
+            this.descripcionArticuloDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.descripcionArticuloDataGridViewTextBoxColumn.DataPropertyName = "DescripcionArticulo";
+            this.descripcionArticuloDataGridViewTextBoxColumn.HeaderText = "DescripcionArticulo";
+            this.descripcionArticuloDataGridViewTextBoxColumn.Name = "descripcionArticuloDataGridViewTextBoxColumn";
+            this.descripcionArticuloDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // precioUnitarioDataGridViewTextBoxColumn
+            // 
+            this.precioUnitarioDataGridViewTextBoxColumn.DataPropertyName = "PrecioUnitario";
+            this.precioUnitarioDataGridViewTextBoxColumn.HeaderText = "PrecioUnitario";
+            this.precioUnitarioDataGridViewTextBoxColumn.Name = "precioUnitarioDataGridViewTextBoxColumn";
+            this.precioUnitarioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // cantidadDataGridViewTextBoxColumn
+            // 
+            this.cantidadDataGridViewTextBoxColumn.DataPropertyName = "Cantidad";
+            this.cantidadDataGridViewTextBoxColumn.HeaderText = "Cantidad";
+            this.cantidadDataGridViewTextBoxColumn.Name = "cantidadDataGridViewTextBoxColumn";
+            this.cantidadDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // totalDataGridViewTextBoxColumn
+            // 
+            this.totalDataGridViewTextBoxColumn.DataPropertyName = "Total";
+            this.totalDataGridViewTextBoxColumn.HeaderText = "Total";
+            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
+            this.totalDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // stockDataGridViewTextBoxColumn
+            // 
+            this.stockDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.stockDataGridViewTextBoxColumn.DataPropertyName = "Stock";
+            this.stockDataGridViewTextBoxColumn.HeaderText = "Stock";
+            this.stockDataGridViewTextBoxColumn.Name = "stockDataGridViewTextBoxColumn";
+            this.stockDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stockDataGridViewTextBoxColumn.Width = 70;
+            // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -405,6 +409,9 @@ namespace Sistema.Formularios
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button panel_confirma_ctn;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.BindingSource operacionViewModelBindingSource;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn idArticuloDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcionArticuloDataGridViewTextBoxColumn;
@@ -412,8 +419,5 @@ namespace Sistema.Formularios
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn stockDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource operacionViewModelBindingSource;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
     }
 }

@@ -35,11 +35,7 @@ namespace Sistema.Formularios
             categoriaViewModelBindingSource.Position = 0;
             
            
-        }
-
-        public event EventHandler<Articulo> AgregarProductoAceptar;
-        public event EventHandler<Articulo> EditarProductoAceptar;
-        public event EventHandler<Articulo> EliminarProductoAceptar;
+        }       
 
 
         public void ActualizarProducto(Articulo p)
@@ -47,24 +43,8 @@ namespace Sistema.Formularios
             
             _articulos = p;
             articulosbd.DataSource = _articulos;            
-            comboBox2.SelectedItem = _presentador.SeleccionarCategoria(p.Categoria.Id); ;
-        }
-
-
-        protected virtual void OnAgregarProductoAceptar(Articulo p)
-        {
-            AgregarProductoAceptar?.Invoke(this, p);
-        }
-
-        protected virtual void OnEditarProductoAceptar(Articulo p)
-        {
-            EditarProductoAceptar?.Invoke(this, p);
-        }
-
-        protected virtual void OnEliminarProductoAceptar(Articulo p)
-        {
-            EliminarProductoAceptar?.Invoke(this, p);
-        }        
+            comboBox2.SelectedItem = _presentador.SeleccionarCategoria(p.Categoria.Id);
+        }              
 
        
 
@@ -73,7 +53,7 @@ namespace Sistema.Formularios
             var resultado = MessageBox.Show("¿Deseas eliminar el Producto?", "Producto", MessageBoxButtons.OKCancel);
             if (resultado == DialogResult.OK)
             {
-                OnEliminarProductoAceptar(_articulos);
+                _presentador.EliminarProducto(this._articulos);
                 this.Dispose();
             }
         }
@@ -90,7 +70,8 @@ namespace Sistema.Formularios
             {
                 //TODO: RECUERDA: los guiones bajos (_) solo se utilizan en variables de clase
                 //NO en métodos.
-                bool _cerra = false;
+                bool cerra = false;
+                string mens;
 
                 if (_nuevo)
                 {
@@ -111,8 +92,15 @@ namespace Sistema.Formularios
                         // public event EventHandler<Articulo> AgregarProductoAceptar
                         // {add btn_guardar.Click += value }
                         // {remove btn_guardar.Click -= value}
-                        OnAgregarProductoAceptar(_articulos);
-                        _cerra = true;
+                        //OnAgregarProductoAceptar(_articulos);
+                        if (_presentador.AgregarProducto(this._articulos, out mens))
+                        {
+                            MessageBox.Show("Se agrego el producto exitosamente.", "Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            cerra = true;
+                        }
+                        else
+                            MessageBox.Show(mens, "Productos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        
 
                     }
                 }
@@ -120,12 +108,18 @@ namespace Sistema.Formularios
                 {
                     _categoria = (CategoriaViewModel)comboBox2.SelectedItem;                    
                     _presentador.DevolverCategoria(_categoria.IdCategoria);
-                    OnEditarProductoAceptar(_articulos);
-                    _cerra = true;
+                    //OnEditarProductoAceptar(_articulos);
+                    if(_presentador.EditarProducto(this._articulos, out mens))
+                    {
+                        MessageBox.Show("Se modifico el producto exitosamente.", "Producto", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                        cerra = true;
+                    }
+                    else
+                        MessageBox.Show(mens, "Producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
 
-                if(_cerra)
+                if(cerra)
                     this.Dispose();
             }
             catch (Exception ex)

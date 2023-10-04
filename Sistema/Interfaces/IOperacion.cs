@@ -15,8 +15,7 @@ namespace Interfaces
         double Cantidad { get; set; }
         double TotalSinDescuento { get; set; }
         double Descuento { get; set; }
-        double TotalConDescuento{ get; set; }
+        double TotalConDescuento{ get; set; }       
         
-        event EventHandler<List<OperacionViewModel>> RealizarOperacion;
     }
 }

@@ -29,42 +29,36 @@ namespace Presentadores
             //un evento generado por un control, por ejemplo: se hace click en un botón y el
             //handler de ese evento se quiere resolver en el presentador. Ver inidicación para esto
             //en la misma vista.
-            _vista.AgregarProductoAceptar += this.AgregarProducto;
-            _vista.EditarProductoAceptar += this.EditarProducto;
-            _vista.EliminarProductoAceptar += this.EliminarProducto;
+            
         }
 
-        public void AgregarProducto(object sender, Articulo p)
-        {
-            string _mensaje;
+        public bool AgregarProducto(Articulo p, out string mens)
+        {   
 
-            if (ValidarArticulo(p, out _mensaje))
+            if (ValidarArticulo(p, out mens))
             {
                 _repositorio.AgregarProducto(p);
+                return true;
+
             }
-            else
-            {
-                
-                MessageBox.Show(_mensaje, "Validar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            return false;            
 
         }
 
-        public void EditarProducto(object sender, Articulo p)
+        public bool EditarProducto(Articulo p, out string mens)
         {
-            string _mensaje;
 
-            if (ValidarArticulo(p, out _mensaje))
+            if (ValidarArticulo(p, out mens))
             {
-                _repositorio.AgregarProducto(p);               
+                _repositorio.EditarProducto(p);
+                return true;
             }
-            else
-            {
-                MessageBox.Show(_mensaje, "Validar Articulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            return false;
         }
 
-        public void EliminarProducto(object sender, Articulo p)
+        public void EliminarProducto(Articulo p)
         {            
              _repositorio.EliminarProducto(p);
         }
@@ -86,23 +80,22 @@ namespace Presentadores
             this._vista.articulo.Categoria = _repositorio.GetCategoria(idcategoria);            
         }
 
-        private bool ValidarArticulo(Articulo articulo, out string mensaje)
+        private bool ValidarArticulo(Articulo art, out string mensaje)
         {
-            Articulo _articulo = _repositorio.BuscarArticulo(articulo.Id);
+            Articulo articulo = _repositorio.BuscarArticulo(art.Id);
 
-            if (_articulo != null && _articulo.Id != articulo.Id)
+            if (articulo != null && articulo.Id != art.Id)
             {                
                 mensaje = "Existe otro articulo con el mismo Codigo.";
                 return false;
             }
             
-            if(!articulo.ValidarArticulo(out mensaje))
+            if(!art.ValidarArticulo(out mensaje))
             {
                 return false;
             }
 
-            return true;
-            //return _repositorio.ValidarArticulo(articulo);
+            return true;            
         }
 
         public CategoriaViewModel SeleccionarCategoria(int idcategoria)

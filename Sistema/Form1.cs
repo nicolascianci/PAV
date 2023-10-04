@@ -43,7 +43,21 @@ namespace Sistema
 
         private void aBRIRCAJAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _presentador.Abrir_Caja();
+            string mens;
+            if (_presentador.AbrirCaja(out mens))
+            {
+                MessageBox.Show(mens, "CAJA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show(mens, "CAJA", MessageBoxButtons.YesNo);
+
+                mens = "";
+                if (result == DialogResult.Yes)
+                    _presentador.CerrarAbrirCaja(out mens);
+
+                MessageBox.Show(mens, "CAJA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void consultarVentasToolStripMenuItem_Click(object sender, EventArgs e)

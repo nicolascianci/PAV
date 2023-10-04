@@ -37,27 +37,14 @@ namespace Sistema.Formularios
             BS_Categoria.DataSource = _categoria;
         }
 
-        protected virtual void OnAgregarCategoria(Categoria categoria_par)
-        {
-            AgregarCategoriaAceptar?.Invoke(this, categoria_par);
-        }
-
-        protected virtual void OnEditarCategiaAceptar(Categoria categoria_par)
-        {
-            EditarCategoriaAceptar?.Invoke(this, categoria_par);
-        }
-
-        protected virtual void OnEliminarCategoriaAceptar(Categoria categoria_par)
-        {
-            EliminarCategoriaAceptar?.Invoke(this, categoria_par);
-        }
+        
 
         public void EliminarCategoria()
         {
             var resultado = MessageBox.Show("¿Deseas eliminar la Categoria?", "Categoria", MessageBoxButtons.OKCancel);
             if (resultado == DialogResult.OK)
             {
-                OnEliminarCategoriaAceptar(_categoria);
+                _presentador.EliminarCategoria(_categoria);
                 this.Dispose();
             }
         }
@@ -66,18 +53,37 @@ namespace Sistema.Formularios
         {
             try
             {
+                string mens;
+                MessageBoxIcon icon;
+
                 if (_nuevo)
                 {
+                   
                     var resultado = MessageBox.Show("¿Deseas crear la Categoria?", "Categoria", MessageBoxButtons.OKCancel);
                     if (resultado == DialogResult.OK)
                     {
-                        OnAgregarCategoria(_categoria);
+                        
+                        if(_presentador.AgregarCategoria(_categoria,out mens))
+                        {
+                            icon = MessageBoxIcon.Information;
+                        }
+                        else
+                            icon = MessageBoxIcon.Error;
+
+                        MessageBox.Show(mens, "CATEGORIA", MessageBoxButtons.OK, icon);
                     }
 
                 }
                 else
                 {
-                    OnEditarCategiaAceptar(_categoria);
+                    if (_presentador.EditarCategoria(_categoria, out mens))
+                    {
+                        icon = MessageBoxIcon.Information;
+                    }
+                    else
+                        icon = MessageBoxIcon.Error;
+
+                    MessageBox.Show(mens, "CATEGORIA", MessageBoxButtons.OK, icon);
                 }
 
                 this.Dispose();

@@ -183,6 +183,10 @@
     <Compile Include="Migrations\202306252131289_primeros_cambios.designer.cs">
       <DependentUpon>202306252131289_primeros_cambios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202310032038000_cambios en operacion.cs" />
+    <Compile Include="Migrations\202310032038000_cambios en operacion.designer.cs">
+      <DependentUpon>202310032038000_cambios en operacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,6 +209,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202306252131289_primeros_cambios.resx">
       <DependentUpon>202306252131289_primeros_cambios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310032038000_cambios en operacion.resx">
+      <DependentUpon>202310032038000_cambios en operacion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

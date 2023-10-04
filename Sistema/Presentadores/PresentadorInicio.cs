@@ -10,16 +10,24 @@ namespace Presentadores
    public class PresentadorInicio
     {
         //TODO: los guiones bajos solo al principio y en las variables de clase, en ningún otro lado.
-        RepositorioCaja _repositorio_caja;
+        RepositorioCaja _repositorioCaja;
 
         public PresentadorInicio()
         {
-            _repositorio_caja = new RepositorioCaja();
+            _repositorioCaja = new RepositorioCaja();
         }
         //TODO: corregir por AbrirCaja (revisar si hay más y corregir)
-        public void Abrir_Caja()
+        public bool AbrirCaja(out string mens)
         {
-            _repositorio_caja.AbrirCaja();
+            if (_repositorioCaja.AbrirCaja(out mens))
+                return true;
+            else
+                return false;
+        }
+
+        public void CerrarAbrirCaja(out string mens)
+        {
+            _repositorioCaja.CerrarAbrirCaja(out mens);
         }
 
     }

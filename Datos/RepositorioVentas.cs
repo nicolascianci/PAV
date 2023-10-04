@@ -28,8 +28,7 @@ namespace Datos
         }
 
         public void GuardarVenta(Operacion operacionPar)
-        {
-            operacionPar.Fecha = DateTime.Now;
+        {           
             _repositorio.operaciones.Add(operacionPar);
             _repositorio.SaveChanges();
         }
@@ -53,6 +52,13 @@ namespace Datos
                               select a).FirstOrDefault();
 
             return item;
+        }
+
+        public List<Detalle> BuscarDetalle(int idOperacion)
+        {
+            return (from a in _repositorio.Detalle
+                    where a.IDOperacion == idOperacion
+                    select a).ToList();
         }
 
     }

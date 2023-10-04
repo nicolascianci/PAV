@@ -59,8 +59,7 @@ namespace Sistema.Formularios
 
         public double TotalConDescuento { get => Convert.ToDouble(total_descuento_txb.Text); set => this.total_descuento_txb.Text = value.ToString("N2"); }
         double IOperacion.Descuento { get => Convert.ToDouble(this.descuento_txb.Text); set => this.descuento_txb.Text = value.ToString(); }
-
-        public event EventHandler<List<OperacionViewModel>> RealizarOperacion;
+        
 
         private void articulos_txt_KeyDown(object sender, KeyEventArgs e)
         {
@@ -156,14 +155,23 @@ namespace Sistema.Formularios
 
         private void Confirmar_btn_Click(object sender, EventArgs e)
         {
-            OnRealizarOperacion(this.ListaArticulos);           
-           
+            string mens;
+            MessageBoxIcon icon;
+            if (_presentador.VistaRealizarOperacion(this.ListaArticulos, out mens))
+            {
+                icon = MessageBoxIcon.Information;
+            }
+            else
+                icon = MessageBoxIcon.Error;
+
+                MessageBox.Show(mens, "Venta", MessageBoxButtons.OK, icon);
+
         }
 
-        protected virtual void OnRealizarOperacion(List<OperacionViewModel> lista_par)
-        {
-            RealizarOperacion?.Invoke(this, lista_par);
-        }
+        //protected virtual void OnRealizarOperacion(List<OperacionViewModel> lista_par)
+        //{
+        //    RealizarOperacion?.Invoke(this, lista_par);
+        //}
 
         private void panel_confirma_ctn_Click(object sender, EventArgs e)
         {

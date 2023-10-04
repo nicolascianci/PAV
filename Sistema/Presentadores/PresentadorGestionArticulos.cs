@@ -56,28 +56,15 @@ namespace Presentadores
 
         //TODO: El presentador no debe conocer los formularios directamente
         //de lo contrario no tiene mucho sentido utilizar el patrón MVP
-        public void AgregarArticulo()
-        {
-            ABMArticulos _formulario = new ABMArticulos();
-            _formulario._nuevo = true;
-            _formulario.ShowDialog();
-        }
+        
 
-        public void EditarArticulo(int idArticulo)
+        public Articulo DevolverArticulo(int idArticulo)
         {
             Articulo _articulo = _repositorio.BuscarArticulo(idArticulo);
-            ABMArticulos _formulario = new ABMArticulos();
-            _formulario._nuevo = false;
-            _formulario.ActualizarProducto(_articulo);
-            _formulario.ShowDialog();
+            return _articulo;
+           
         }
 
-        public void EliminarArticulo(int idarticulo)
-        {
-            Articulo _articulo = _repositorio.BuscarArticulo(idarticulo);
-            ABMArticulos _formulario = new ABMArticulos();
-            _formulario.ActualizarProducto(_articulo);
-            _formulario.EliminarProducto();
-        }
+        
     }
 }

@@ -36,12 +36,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.desde_ctrl = new System.Windows.Forms.MaskedTextBox();
             this.ventas_grilla = new System.Windows.Forms.DataGridView();
+            this.consultaVentasViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btn_Salir = new System.Windows.Forms.Button();
             this.btn_Cancelar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.total_txt = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.consultaVentasViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.numeroVentaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numeroFacturaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaVentaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -135,6 +135,10 @@
             this.ventas_grilla.TabIndex = 1;
             this.ventas_grilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ventas_grilla_CellDoubleClick);
             // 
+            // consultaVentasViewModelBindingSource
+            // 
+            this.consultaVentasViewModelBindingSource.DataSource = typeof(Dominio.ViewModels.ConsultaVentasViewModel);
+            // 
             // btn_Salir
             // 
             this.btn_Salir.Image = global::Sistema.Properties.Resources.salida;
@@ -191,38 +195,35 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "Haga \"Doble Clic\" para ver el detalle de la venta";
             // 
-            // consultaVentasViewModelBindingSource
-            // 
-            this.consultaVentasViewModelBindingSource.DataSource = typeof(Dominio.ViewModels.ConsultaVentasViewModel);
-            // 
             // numeroVentaDataGridViewTextBoxColumn
             // 
-            this.numeroVentaDataGridViewTextBoxColumn.DataPropertyName = "numeroVenta";
-            this.numeroVentaDataGridViewTextBoxColumn.HeaderText = "numeroVenta";
+            this.numeroVentaDataGridViewTextBoxColumn.DataPropertyName = "NumeroVenta";
+            this.numeroVentaDataGridViewTextBoxColumn.HeaderText = "NumeroVenta";
             this.numeroVentaDataGridViewTextBoxColumn.Name = "numeroVentaDataGridViewTextBoxColumn";
             this.numeroVentaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // numeroFacturaDataGridViewTextBoxColumn
             // 
             this.numeroFacturaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.numeroFacturaDataGridViewTextBoxColumn.DataPropertyName = "numeroFactura";
-            this.numeroFacturaDataGridViewTextBoxColumn.HeaderText = "numeroFactura";
+            this.numeroFacturaDataGridViewTextBoxColumn.DataPropertyName = "NumeroFactura";
+            this.numeroFacturaDataGridViewTextBoxColumn.HeaderText = "NumeroFactura";
             this.numeroFacturaDataGridViewTextBoxColumn.Name = "numeroFacturaDataGridViewTextBoxColumn";
             this.numeroFacturaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // fechaVentaDataGridViewTextBoxColumn
             // 
-            this.fechaVentaDataGridViewTextBoxColumn.DataPropertyName = "fechaVenta";
-            this.fechaVentaDataGridViewTextBoxColumn.HeaderText = "fechaVenta";
+            this.fechaVentaDataGridViewTextBoxColumn.DataPropertyName = "FechaVenta";
+            this.fechaVentaDataGridViewTextBoxColumn.HeaderText = "FechaVenta";
             this.fechaVentaDataGridViewTextBoxColumn.Name = "fechaVentaDataGridViewTextBoxColumn";
             this.fechaVentaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // totalVentaDataGridViewTextBoxColumn
             // 
-            this.totalVentaDataGridViewTextBoxColumn.DataPropertyName = "totalVenta";
-            this.totalVentaDataGridViewTextBoxColumn.HeaderText = "totalVenta";
+            this.totalVentaDataGridViewTextBoxColumn.DataPropertyName = "TotalVenta";
+            this.totalVentaDataGridViewTextBoxColumn.HeaderText = "TotalVenta";
             this.totalVentaDataGridViewTextBoxColumn.Name = "totalVentaDataGridViewTextBoxColumn";
             this.totalVentaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totalVentaDataGridViewTextBoxColumn.Visible = false;
             // 
             // Ventas_Consultas
             // 
@@ -262,10 +263,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.MaskedTextBox total_txt;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.BindingSource consultaVentasViewModelBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn numeroVentaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn numeroFacturaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaVentaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalVentaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource consultaVentasViewModelBindingSource;
     }
 }

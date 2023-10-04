@@ -17,8 +17,8 @@ namespace Presentadores
     public class PresentadorVentas
     {
         IOperacion _vista;
-        Operacion _operacion;
-        List<OperacionViewModel> _listaDetalle;
+        Operacion _operacion = new Operacion();
+        List<OperacionViewModel> _listaDetalle = new List<OperacionViewModel>();
 
         List<Articulo> _listaArticulos = new List<Articulo>();
 
@@ -33,14 +33,11 @@ namespace Presentadores
             //mientras que en este caso está dividido, se crea acá la instacia, en el método VistaRealizarOperacion
             //se le asignan la mayoría de los datos y en el repositorio se le termina asignando la
             //fecha.
-            _operacion = new Operacion();
-            _operacion.TipoOperacion = TipoOperacion.Venta;
-            _listaDetalle = new List<OperacionViewModel>();
+           
 
             _negocioArticulo = new RepositorioArticulos();
             _negocioVentas = new RepositorioVentas();
-
-            _vista.RealizarOperacion += this.VistaRealizarOperacion;
+           
         }
 
         public PresentadorVentas(IOperacion vistaPar, int idVentaPar)
@@ -52,8 +49,9 @@ namespace Presentadores
 
             if(_operacion != null)
             {
+                List<Detalle> listaDetalleOperacion = _negocioVentas.BuscarDetalle(idVentaPar);
                 _listaDetalle = new List<OperacionViewModel>();
-                _listaDetalle = _operacion.OperacionDetalle.Select(p => new OperacionViewModel
+                _listaDetalle = listaDetalleOperacion.Select(p => new OperacionViewModel
                 {
                     IdArticulo = p.ArticuloID,
                     DescripcionArticulo = p.Articulo.Descripcion,
@@ -69,29 +67,30 @@ namespace Presentadores
             }
         }
 
-        private void VistaRealizarOperacion(object sender, List<OperacionViewModel> e)
+        public bool VistaRealizarOperacion(List<OperacionViewModel> e,out string mens)
         {
-            if(this.ValidarOperacion(e))
+            if(this.ValidarOperacion(e,out mens))
             {
+                _operacion.TipoOperacion = TipoOperacion.Venta;                
+
                 using (TransactionScope scope = new TransactionScope())
                 {
                     _operacion.PuntoVenta = 1;
-                    _operacion.NumeroVenta = _negocioVentas.ObtenerNumero();
-                    _operacion.TotalSinDescuento = this._vista.TotalSinDescuento;
+                    _operacion.NumeroVenta = _negocioVentas.ObtenerNumero();                    
                     _operacion.Descuento = this._vista.Descuento;
-                    _operacion.Total = this._vista.TotalConDescuento;
-                    _operacion.OperacionDetalle = new List<Detalle>();
+                    _operacion.Fecha = DateTime.Now;
+                    //_operacion.OperacionDetalle = new List<Detalle>();
 
                     foreach (var Item in e)
                     {
                         //TODO: recordar el patrón Creador, ¿quién debería crear el detalle?
-                        Detalle _detalle = new Detalle();
-                        _detalle.ArticuloID = Convert.ToInt32(Item.IdArticulo);
-                        _detalle.Cantidad = Convert.ToDecimal(Item.Cantidad);
-                        _detalle.PrecioUnitario = Convert.ToDouble(Item.PrecioUnitario);
+                        //Detalle _detalle = new Detalle();
+                        //_detalle.ArticuloID = Convert.ToInt32(Item.IdArticulo);
+                        //_detalle.Cantidad = Convert.ToDecimal(Item.Cantidad);
+                        //_detalle.PrecioUnitario = Convert.ToDouble(Item.PrecioUnitario);
 
-                        _operacion.OperacionDetalle.Add(_detalle);
-                        this._negocioArticulo.ActualizarStock(_detalle.ArticuloID, _detalle.Cantidad);
+                        //_operacion.agregarDetalle(Item.IdArticulo, Item.Cantidad, Item.PrecioUnitario);
+                        this._negocioArticulo.ActualizarStock(Item.IdArticulo, (decimal)Item.Cantidad);
                     }
 
                     _negocioVentas.GuardarVenta(_operacion);
@@ -99,8 +98,14 @@ namespace Presentadores
                     scope.Complete();
                 }
 
-                MessageBox.Show("Se realizo con exito la venta.", "Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                mens = "Se realizo con exito la venta.";
                 this.LimpiarFormulario();
+                _operacion = new Operacion();//una nueva operacion cuando retome el formulario
+                return true;
+            }
+            else
+            {
+                return false;
             }
 
         }
@@ -126,6 +131,7 @@ namespace Presentadores
                 _detalle.Cantidad = _vista.Cantidad;
                 _detalle.Stock = (double)articuloPar.Stock;
 
+                _operacion.agregarDetalle(_detalle.IdArticulo, _detalle.Cantidad, _detalle.PrecioUnitario);
                 _listaDetalle.Add(_detalle);
             }else
             {
@@ -134,8 +140,10 @@ namespace Presentadores
                 _listaDetalle.RemoveAt(_indice);
                 _item.Cantidad = _item.Cantidad + this._vista.Cantidad;
                 _listaDetalle.Insert(_indice, _item);
+                _operacion.editarDetalle(_item.IdArticulo, _item.Cantidad, _item.PrecioUnitario);
             }
 
+            
             this._vista.ListaArticulos = _listaDetalle;
             this._vista.NombreArticulo = "";
             this.Totales();
@@ -146,7 +154,7 @@ namespace Presentadores
             var _item = _listaDetalle.Where(x => Convert.ToInt32(x.IdArticulo) == idArticuloPar).FirstOrDefault();
 
             _listaDetalle.Remove(_item);
-
+            _operacion.eliminarDetalle(idArticuloPar);
             this._vista.ListaArticulos = _listaDetalle;
             this.Totales();
             
@@ -155,20 +163,9 @@ namespace Presentadores
         //TODO: patrón Experto, ¿quién debería conocer el total?
         public void Totales()
         {
-            double _total = 0;
-
-            foreach(var item in this._vista.ListaArticulos)
-            {
-                _total = _total + Convert.ToDouble(item.Total);
-
-            }
-
-            this._vista.TotalSinDescuento = _total;
-
-            if (this._vista.Descuento != 0.00)
-                this._vista.TotalConDescuento = _total * (1 - (this._vista.Descuento/100));
-            else
-                this._vista.TotalConDescuento = _total;
+            _operacion.Descuento = this._vista.Descuento;
+            this._vista.TotalConDescuento = _operacion.Total;
+            this._vista.TotalSinDescuento = _operacion.TotalSinDescuento;
 
         }
 
@@ -186,14 +183,15 @@ namespace Presentadores
 
         }
 
-        private bool ValidarOperacion(List<OperacionViewModel> detalle)
+        private bool ValidarOperacion(List<OperacionViewModel> detalle, out string mens)
         {
             if(detalle == null || detalle.Count <= 0)
             {
-                MessageBox.Show("La operacion no tiene detalle.", "Validar Operacion", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                mens = "La operacion no tiene detalle.";
                 return false;
             }
 
+            mens = "";
             return true;
         }
     }

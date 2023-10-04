@@ -21,39 +21,56 @@ namespace Presentadores
             _vista = vistaPar;
             _repositorio = new RepositorioABMCategorias();
 
-            _vista.AgregarCategoriaAceptar += this.AgregarCategoria;
-            _vista.EditarCategoriaAceptar += this.EditarCategoria;
-            _vista.EliminarCategoriaAceptar += this.EliminarCategoria;
+            
         }
 
-        public void AgregarCategoria(object sender, Categoria c)
+        public bool AgregarCategoria(Categoria c,out string mens)
         {
-            if(this.ValidarCategoria(c.Nombre))
+            
+            if (this.ValidarCategoria(c.Nombre, out mens))
+            {
                 _repositorio.AgregarCategoria(c);
+                mens = "Se guardo la categoria exitosamente.";
+                return true;
+            }
+            else
+                return false;
+                
 
         }
 
-        public void EditarCategoria(object sender, Categoria c)
+        public bool EditarCategoria(Categoria c, out string mens)
         {
-            if (this.ValidarCategoria(c.Nombre))
+
+            if (this.ValidarCategoria(c.Nombre, out mens))
+            {
                 _repositorio.ModificarCategoria(c);
+                mens = "Se guardo la categoria exitosamente.";
+                return true;
+            }
+            else
+                return false;
+
+
         }
 
-        public void EliminarCategoria(object sender, Categoria c)
+        public void EliminarCategoria(Categoria c)
         {
             _repositorio.EliminarCategoria(c);
         }
 
-        private bool ValidarCategoria(string nombreCategoria)
+        private bool ValidarCategoria(string nombreCategoria, out string mens)
         {
             Categoria _categoria = _repositorio.BuscarCategoria(nombreCategoria);
 
             if (_categoria != null)
             {
-                System.Windows.Forms.MessageBox.Show("Existe una Categoria con ese nombre.", "Validar Categoria", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                //System.Windows.Forms.MessageBox.Show("Existe una Categoria con ese nombre.", "Validar Categoria", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                mens = "Existe una Categoria con ese nombre.";
                 return false;
             }
 
+            mens = "";
             return true;
         }
 
